@@ -35,7 +35,7 @@ public class OrderChooseActivity extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderIntent = new Intent(OrderChooseActivity.this, OrderActivity.class);
+                Intent orderIntent = new Intent(OrderChooseActivity.this, MainActivity.class);
                 OrderChooseActivity.this.startActivity(orderIntent);
             }
         });
