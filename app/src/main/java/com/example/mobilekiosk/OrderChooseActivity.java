@@ -19,7 +19,7 @@ public class OrderChooseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_choose);
 
         orderlist = (ImageView)findViewById(R.id.orderlist) ;
-        order = (ImageView)findViewById(R.id.order);
+        order = (ImageView)findViewById(R.id.map);
 
         Button orderlistButton = (Button) findViewById(R.id.orderlistButton);
         Button orderButton = (Button) findViewById(R.id.orderButton);
