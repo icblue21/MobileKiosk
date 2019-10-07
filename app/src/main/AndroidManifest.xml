@@ -15,6 +15,7 @@
         <activity android:name=".OrderlistActivity"></activity>
         <activity android:name=".OrderActivity" />
         <activity android:name=".OrderChooseActivity" />
+        <activity android:name=".Order_Menu" />
 
         <activity
             android:name=".SplashActivity"
