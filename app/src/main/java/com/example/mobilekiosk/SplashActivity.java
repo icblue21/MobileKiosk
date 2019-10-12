@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.example.mobilekiosk.R;
-import com.example.mobilekiosk.MainActivity;
 
 public class SplashActivity extends Activity {
     @Override
