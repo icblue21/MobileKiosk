@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
 

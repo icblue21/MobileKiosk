@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".OrderChooseActivity" />
+        <activity android:name=".Order_Menu" />
 
         <activity
             android:name=".SplashActivity"
