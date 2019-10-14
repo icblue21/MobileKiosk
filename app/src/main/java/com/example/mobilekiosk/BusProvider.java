@@ -1,5 +1,7 @@
 package com.example.mobilekiosk;
 
+
+
 public final class BusProvider {
 
     public interface OntimeListener{

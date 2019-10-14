@@ -1,21 +1,34 @@
 package com.example.mobilekiosk;
 
+import android.app.Activity;
 import android.content.Context;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
+
+import com.example.mobilekiosk.R;
+
 
 
 public class MenuFragment4 extends Fragment {
 
     ImageButton button1;
-    private BusProvider.OntimeListener ontime;
+
 
     public MenuFragment4() {
         // required
@@ -29,21 +42,10 @@ public class MenuFragment4 extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof BusProvider.OntimeListener) {
-            ontime = (BusProvider.OntimeListener) context;
 
-        } else {
-
-
-        }
 
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        ontime = null;
-    }
 
     @Nullable
     @Override
@@ -56,7 +58,7 @@ public class MenuFragment4 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ontime.ontimePickerset("기타", 15000);
+                //ontime.ontimePickerset("기타이다", 4);
             }
         });
 

@@ -1,5 +1,9 @@
 package com.example.mobilekiosk;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,20 +11,30 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import com.example.mobilekiosk.BusProvider;
+import com.example.mobilekiosk.MenuFragment1;
+import com.example.mobilekiosk.MenuFragment2;
+import com.example.mobilekiosk.MenuFragment3;
+import com.example.mobilekiosk.MenuFragment4;
+import com.example.mobilekiosk.PaymentChoice;
+import com.example.mobilekiosk.R;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Order_Menu extends AppCompatActivity implements View.OnClickListener, BusProvider.OntimeListener{
 
-    Button mybutton1; //프레그먼트1 호출
-    Button mybutton2; //프레그먼트2 호출
-    Button mybutton3; //프레그먼츠3 호출
-    Button mybutton4; //프레그먼트4 호출
-
-    int SetId;   //버튼 id값 세팅
+    Button mybutton1;
+    Button mybutton2;
+    Button mybutton3;
+    Button mybutton4;
+    Button mybutton5; //주문버튼
+    ImageButton myIbutton1;
+    int SetId;
     int SetCode; //메뉴추가마다 1씩 증가하여 생성할 MenuData 를 지정
-    //int  k[];
-    MenuData MenuList[];//메뉴 데이터 배열
+    int  k[];
+    MenuData MenuList[];
+    //LinkedList<MenuData>
     LinearLayout lm;
     LinearLayout.LayoutParams params;
     @Override
@@ -34,10 +48,10 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    @Override  //프레그먼트 이벤트 발생 수신
+    @Override
     public void ontimePickerset(String name, int price) {
-        MenuList[SetCode] = new MenuData(name, price,1);//메뉴객체생성 이름,가격,수량(초기1)
-        addlist(name,price);
+        MenuList[SetCode] = new com.example.mobilekiosk.MenuData(name, price,1);//메뉴객체생성 이름,가격,수량(초기1)
+        addlist(name,price); //문자열과 정수 형태로 프레그먼트 데이터 접수
 
     }
 
@@ -49,14 +63,15 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         mybutton2 = (Button)findViewById(R.id.button2);
         mybutton3 = (Button)findViewById(R.id.button4);
         mybutton4 = (Button)findViewById(R.id.button);
+        mybutton5 = (Button)findViewById(R.id.button5);
 
         SetId = 0;
         SetCode = 0;
-       // k = new int[100];
+        k = new int[100];
         lm = (LinearLayout) findViewById(R.id.LinearLayout1);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        MenuList = new MenuData[100];
+        MenuList = new com.example.mobilekiosk.MenuData[100];
 
     }
 
@@ -79,6 +94,10 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                 callFragment(4);
                 break;
 
+            case R.id.button5:
+                StartPaymentChoice();
+                break;
+
         }
     }
     public void SetListener()
@@ -87,6 +106,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         mybutton2.setOnClickListener(this);
         mybutton3.setOnClickListener(this);
         mybutton4.setOnClickListener(this);
+        mybutton5.setOnClickListener(this);
 
     }
 
@@ -110,13 +130,13 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                 transaction.commit();
                 break;
             case 3:
-                // '프래그먼트3' 호출
+                // '프래그먼트2' 호출
                 MenuFragment3 fragment3 = new MenuFragment3();
                 transaction.replace(R.id.fragframe, fragment3);
                 transaction.commit();
                 break;
             case 4:
-                // '프래그먼트4' 호출
+                // '프래그먼트2' 호출
                 MenuFragment4 fragment4 = new MenuFragment4();
                 transaction.replace(R.id.fragframe, fragment4);
                 transaction.commit();
@@ -125,7 +145,6 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    //메뉴 목록 레이아웃 할당
     public void addlist(String name, int price){
 
          // LinearLayout 생성
@@ -163,7 +182,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         btn3.setId(SetId + 3);
         btn3.setText("삭제");
         btn3.setLayoutParams(ll3);
-        //k[SetCode] = 1;
+        k[SetCode] = 1;
 
          btn.setOnClickListener(new View.OnClickListener() {
 
@@ -173,7 +192,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                  int i = position;
                  MenuList[i].SetQuntity(MenuList[i].GetQuntity()+1);//수량 증가
                  tvAge.setText("   수량" + MenuList[i].GetQuntity() + "  ");
-                 tvPrice.setText(""+MenuList[i].GetFee());
+                 tvPrice.setText(""+MenuList[i].GetTotal());
 
              }
 
@@ -186,7 +205,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                 int i = position;//
                 MenuList[i].SetQuntity(MenuList[i].GetQuntity()-1);//수량 감소
                 tvAge.setText("   수량" + MenuList[i].GetQuntity() + "  ");
-                tvPrice.setText(""+MenuList[i].GetFee());
+                tvPrice.setText(""+MenuList[i].GetTotal());
 
             }
 
@@ -194,7 +213,10 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         btn3.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                int i = position;
+                MenuList[i].remove();
                 lm.removeView(ll);
+
             }
 
         });
@@ -212,11 +234,14 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
          lm.addView(ll);
          SetId = SetId+3;
          SetCode++;
-
     }
 
+    void StartPaymentChoice(){
+        Intent intent = new Intent(this, PaymentChoice.class);
+        intent.putExtra("MenuData",MenuList);
+        startActivity(intent);
 
-
+    }
 }
 
 
