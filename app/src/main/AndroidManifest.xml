@@ -14,6 +14,8 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".OrderlistActivity"></activity>
         <activity android:name=".OrderChooseActivity" />
+        <activity android:name=".PaymentChoice" />
+        <activity android:name=".PayHistory" />
         <activity android:name=".Order_Menu" />
 
         <activity
