@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
                                 //여기 수정 OrderChoose로.
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                 startActivity(intent);
                             }
                             else{
