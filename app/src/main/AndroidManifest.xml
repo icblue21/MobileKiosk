@@ -13,12 +13,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".OrderlistActivity"></activity>
-        <activity android:name=".OrderActivity">
-            <intent-filter>
-                <action android:name="com.example.mobilekiosk.SEND_BROAD_CAST" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".OrderChooseActivity" />
         <activity android:name=".Order_Menu" />
 
@@ -41,6 +35,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".PaymentChoice" />
+        <activity android:name=".PayHistory" />
 
     </application>
 
