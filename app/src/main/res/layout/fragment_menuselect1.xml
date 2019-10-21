@@ -3,26 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Order_Menu">
+    android:background="@color/colorBackground"
+    tools:context=".LoginActivity">
 
     <ImageButton
-        android:id="@+id/fragm1"
-        android:layout_width="126dp"
-        android:layout_height="86dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/fragm3"
+        android:layout_width="108dp"
+        android:layout_height="82dp"
         android:scaleType="centerInside"
-
-
-        android:src="@drawable/pic1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.072" />
+        app:layout_constraintVertical_bias="0.194"
+        app:srcCompat="@drawable/bb2" />
+
+    <TextView
+        android:id="@+id/fragt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragm3"
+        app:layout_constraintEnd_toEndOf="@+id/fragm3"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/fragm3"
+        app:layout_constraintTop_toBottomOf="@+id/fragm3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/fragt6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragm6"
+        app:layout_constraintEnd_toEndOf="@+id/fragm6"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/fragm6"
+        app:layout_constraintTop_toBottomOf="@+id/fragm6"
+        app:layout_constraintVertical_bias="0.039" />
 
     <ImageButton
         android:id="@+id/fragm2"
@@ -34,85 +53,141 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077"
+        app:layout_constraintVertical_bias="0.194"
         app:srcCompat="@drawable/bb2" />
 
     <ImageButton
-        android:id="@+id/fragm3"
-        android:layout_width="124dp"
-        android:layout_height="109dp"
+        android:id="@+id/fragm1"
+        android:layout_width="108dp"
+        android:layout_height="82dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_alignParentBottom="true"
+
         android:scaleType="centerInside"
+        android:src="@drawable/bb2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057"
-        app:srcCompat="@drawable/bb1" />
+        app:layout_constraintVertical_bias="0.194" />
 
     <TextView
-        android:id="@+id/fragt1"
+        android:id="@+id/fragt4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragm4"
+        app:layout_constraintEnd_toEndOf="@+id/fragm4"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/fragm4"
+        app:layout_constraintTop_toBottomOf="@+id/fragm4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/fragm6"
+        android:layout_width="108dp"
+        android:layout_height="82dp"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragm1"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402"
+        app:srcCompat="@drawable/bb2" />
 
     <TextView
         android:id="@+id/fragt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintBottom_toTopOf="@+id/fragm2"
+        app:layout_constraintEnd_toEndOf="@+id/fragm2"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="@+id/fragm2"
+        app:layout_constraintTop_toBottomOf="@+id/fragm2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/fragt3"
+        android:id="@+id/fragt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragm1"
+        app:layout_constraintEnd_toEndOf="@+id/fragm1"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toStartOf="@+id/fragm1"
+        app:layout_constraintTop_toBottomOf="@+id/fragm1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/fragm5"
+        android:layout_width="108dp"
+        android:layout_height="82dp"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragm3"
-        app:layout_constraintVertical_bias="0.014" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402"
+        app:srcCompat="@drawable/bb2" />
+
+    <ImageButton
+        android:id="@+id/fragm4"
+        android:layout_width="108dp"
+        android:layout_height="82dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerInside"
+
+        android:src="@drawable/bb2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402" />
+
+    <TextView
+        android:id="@+id/fragt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragm5"
+        app:layout_constraintEnd_toEndOf="@+id/fragm5"
+        app:layout_constraintStart_toStartOf="@+id/fragm5"
+        app:layout_constraintTop_toBottomOf="@+id/fragm5"
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="정렬1"
+        android:text="이름순"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="정렬2"
+        android:text="가격순"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.405"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.023" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-

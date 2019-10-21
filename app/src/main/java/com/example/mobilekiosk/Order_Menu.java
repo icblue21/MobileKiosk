@@ -1,8 +1,6 @@
 package com.example.mobilekiosk;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +16,6 @@ import com.example.mobilekiosk.MenuFragment3;
 import com.example.mobilekiosk.MenuFragment4;
 import com.example.mobilekiosk.PaymentChoice;
 import com.example.mobilekiosk.R;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,7 +47,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void ontimePickerset(String name, int price) {
-        MenuList[SetCode] = new com.example.mobilekiosk.MenuData(name, price,1);//메뉴객체생성 이름,가격,수량(초기1)
+        MenuList[SetCode] = new MenuData(name, price,1);//메뉴객체생성 이름,가격,수량(초기1)
         addlist(name,price); //문자열과 정수 형태로 프레그먼트 데이터 접수
 
     }
@@ -71,7 +68,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         lm = (LinearLayout) findViewById(R.id.LinearLayout1);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        MenuList = new com.example.mobilekiosk.MenuData[100];
+        MenuList = new MenuData[100];
 
     }
 
@@ -147,7 +144,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     public void addlist(String name, int price){
 
-         // LinearLayout 생성
+        // LinearLayout 생성
         final LinearLayout ll = new LinearLayout(this);
         final LinearLayout.LayoutParams ll2 = new LinearLayout.LayoutParams(120,120);
         final LinearLayout.LayoutParams ll3 = new LinearLayout.LayoutParams(160,120);
@@ -184,19 +181,19 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         btn3.setLayoutParams(ll3);
         k[SetCode] = 1;
 
-         btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
 
-             public void onClick(View v) {
+            public void onClick(View v) {
 
-                 //k[position]++;
-                 int i = position;
-                 MenuList[i].SetQuntity(MenuList[i].GetQuntity()+1);//수량 증가
-                 tvAge.setText("   수량" + MenuList[i].GetQuntity() + "  ");
-                 tvPrice.setText(""+MenuList[i].GetTotal());
+                //k[position]++;
+                int i = position;
+                MenuList[i].SetQuntity(MenuList[i].GetQuntity()+1);//수량 증가
+                tvAge.setText("   수량" + MenuList[i].GetQuntity() + "  ");
+                tvPrice.setText(""+MenuList[i].GetTotal());
 
-             }
+            }
 
-         });
+        });
         btn2.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -221,29 +218,25 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
         });
 
-         //버튼 , 텍스트뷰 add
-         ll.addView(tvProdc);
-         ll.addView(btn);
-         ll.addView(tvAge);
-         ll.addView(btn2);
-         ll.addView(tvPrice);
-         ll.addView(btn3);
+        //버튼 , 텍스트뷰 add
+        ll.addView(tvProdc);
+        ll.addView(btn);
+        ll.addView(tvAge);
+        ll.addView(btn2);
+        ll.addView(tvPrice);
+        ll.addView(btn3);
 
-         //LinearLayout 정의된거 add
+        //LinearLayout 정의된거 add
 
-         lm.addView(ll);
-         SetId = SetId+3;
-         SetCode++;
+        lm.addView(ll);
+        SetId = SetId+3;
+        SetCode++;
     }
 
     void StartPaymentChoice(){
-        Intent intent = new Intent(this, PaymentChoice.class);
+        Intent intent = new Intent(this,PaymentChoice.class);
         intent.putExtra("MenuData",MenuList);
         startActivity(intent);
 
     }
 }
-
-
-
-

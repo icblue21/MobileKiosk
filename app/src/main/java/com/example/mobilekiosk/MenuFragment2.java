@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -27,11 +28,15 @@ import com.example.mobilekiosk.R;
 
 
 public class MenuFragment2 extends Fragment {
+    int resId;
+    ImageButton button[];
+    Button btn[];
+    TextView text[];
+    ButtonList BList[];
 
-    ImageButton button1;
     private BusProvider.OntimeListener ontime;
-
-    public MenuFragment2() {
+    public MenuFragment2()
+    {
         // required
     }
 
@@ -41,20 +46,18 @@ public class MenuFragment2 extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Context context){
         super.onAttach(context);
-        if (context instanceof BusProvider.OntimeListener) {
+        if(context instanceof BusProvider.OntimeListener){
             ontime = (BusProvider.OntimeListener) context;
 
-        } else {
-
+        }else{
 
         }
 
     }
-
     @Override
-    public void onDetach() {
+    public void  onDetach() {
         super.onDetach();
         ontime = null;
     }
@@ -64,16 +67,134 @@ public class MenuFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.fragment_menuselect2, container, false);
-        button1 = (ImageButton) layout.findViewById(R.id.imageButton6);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        button = new ImageButton[6];
+        text = new TextView[6];
+        btn = new Button[2];
+        btn[0] = (Button)layout.findViewById(R.id.button6);
+        btn[1] = (Button)layout.findViewById(R.id.button7);
+
+
+
+        for(int i = 0;i<6;i++){
+            String bt = "fragm"+(i+1);
+            String tv = "fragt"+(i+1);
+            resId= getResources().getIdentifier(bt, "id", "com.example.a0923firebase");
+            button[i] = (ImageButton)layout.findViewById(resId);
+            resId= getResources().getIdentifier(tv, "id", "com.example.a0923firebase");
+            text[i] = (TextView) layout.findViewById(resId);
+        }
+
+
+        BList = new ButtonList[6];
+        BList[0] =  new ButtonList(R.drawable.bb2,"세트1",1000);
+        BList[1] =  new ButtonList(R.drawable.bb2,"세트2",2500);
+        BList[2] =  new ButtonList(R.drawable.bb2,"세트3",1500);
+        BList[3] =  new ButtonList(R.drawable.bb2,"세트4",4000);
+        BList[4] =  new ButtonList(R.drawable.bb2,"세트5",3500);
+        BList[5] =  new ButtonList(R.drawable.bb2,"세트6",500);
+
+
+        button[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ontime.ontimePickerset("햄버거", 3900);
+                //ontime.ontimePickerset("작동",1000);
+                SubListenner(0);
+                //button[0].setImageResource(R.drawable.burger);
             }
         });
 
+        button[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(1);
+            }
+        });
+        button[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(2);
+            }
+        });
+        btn[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { //이름순
+                //정렬 알고리즘으로 대체
+                ButtonList temp;
+                temp = BList[2];
+                BList[2] = BList[0];
+                BList[0] =  temp;
+                ReDrawButton();
+            }
+        });
+        btn[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//가격순
+                //정렬 알고리즘 대체
+                ButtonList temp;
+                temp = BList[2];
+                BList[2] = BList[0];
+                BList[0] =  temp;
+                ReDrawButton();
+            }
+        });
+
+
+        ReDrawButton();
         return layout;
     }
+
+    class ButtonList{
+        public int img;
+        public String Fname;
+        public int price;
+        ButtonList(int id, String name, int price){
+            this.img = id;
+            this.Fname = name;
+            this.price = price;
+        }
+    }
+    void SubListenner(int num) {
+        switch (num) {
+            case 0:
+
+                ontime.ontimePickerset(BList[0].Fname,BList[0].price);
+                break;
+
+            case 1:
+
+                ontime.ontimePickerset(BList[1].Fname,BList[1].price);
+                break;
+
+            case 2:
+
+                ontime.ontimePickerset(BList[2].Fname,BList[2].price);
+                break;
+
+            case 3:
+
+                ontime.ontimePickerset(BList[3].Fname,BList[3].price);
+                break;
+            case 4:
+
+                ontime.ontimePickerset(BList[4].Fname,BList[4].price);
+                break;
+            case 5:
+
+                ontime.ontimePickerset(BList[5].Fname,BList[5].price);
+                break;
+        }
+    }
+    void ReDrawButton(){
+        for(int i = 0;i<6;i++){
+            String bt = "fragm"+(i+1);
+            String tv = "fragt"+(i+1);
+            resId= getResources().getIdentifier(bt, "id", "com.example.mobilekiosk");
+            button[i].setImageResource(BList[i].img);
+            resId= getResources().getIdentifier(tv, "id", "com.example.mobilekiosk");
+            text[i].setText("상품명:" + BList[i].Fname+"(" +BList[i].price+"원)");
+        }
+
+    }
+
 }

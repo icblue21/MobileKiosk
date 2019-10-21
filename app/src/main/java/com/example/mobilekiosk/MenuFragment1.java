@@ -1,30 +1,17 @@
 package com.example.mobilekiosk;
 
-import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
-
-import com.example.mobilekiosk.BusProvider;
-import com.example.mobilekiosk.R;
-
 
 
 public class MenuFragment1 extends Fragment {
@@ -35,8 +22,8 @@ public class MenuFragment1 extends Fragment {
     ButtonList BList[];
 
     private BusProvider.OntimeListener ontime;
-    public MenuFragment1()
-    {
+
+    public MenuFragment1() {
         // required
     }
 
@@ -46,18 +33,19 @@ public class MenuFragment1 extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context){
+    public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof BusProvider.OntimeListener){
+        if (context instanceof BusProvider.OntimeListener) {
             ontime = (BusProvider.OntimeListener) context;
 
-        }else{
+        } else {
 
         }
 
     }
+
     @Override
-    public void  onDetach() {
+    public void onDetach() {
         super.onDetach();
         ontime = null;
     }
@@ -68,28 +56,30 @@ public class MenuFragment1 extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.fragment_menuselect1, container, false);
 
-        button = new ImageButton[3];
-        text = new TextView[3];
+        button = new ImageButton[6];
+        text = new TextView[6];
         btn = new Button[2];
-        btn[0] = (Button)layout.findViewById(R.id.button6);
-        btn[1] = (Button)layout.findViewById(R.id.button7);
+        btn[0] = (Button) layout.findViewById(R.id.button6);
+        btn[1] = (Button) layout.findViewById(R.id.button7);
 
 
-
-        for(int i = 0;i<3;i++){
-            String bt = "fragm"+(i+1);
-            String tv = "fragt"+(i+1);
-            resId= getResources().getIdentifier(bt, "id", "com.example.mobilekiosk");
-            button[i] = (ImageButton)layout.findViewById(resId);
-            resId= getResources().getIdentifier(tv, "id", "com.example.mobilekiosk");
+        for (int i = 0; i < 6; i++) {
+            String bt = "fragm" + (i + 1);
+            String tv = "fragt" + (i + 1);
+            resId = getResources().getIdentifier(bt, "id", "com.example.mobilekiosk");
+            button[i] = (ImageButton) layout.findViewById(resId);
+            resId = getResources().getIdentifier(tv, "id", "com.example.mobilekiosk");
             text[i] = (TextView) layout.findViewById(resId);
         }
 
 
-        BList = new ButtonList[3];
-        BList[0] =  new ButtonList(R.drawable.pic1,"햄버거3",1000);
-        BList[1] =  new ButtonList(R.drawable.bb2,"햄버거2",2000);
-        BList[2] =  new ButtonList(R.drawable.bb3,"햄버거1",3000);
+        BList = new ButtonList[6];
+        BList[0] = new ButtonList(R.drawable.bb2, "햄버거1", 1000);
+        BList[1] = new ButtonList(R.drawable.bb2, "햄버거2", 2500);
+        BList[2] = new ButtonList(R.drawable.bb2, "햄버거3", 1500);
+        BList[3] = new ButtonList(R.drawable.bb2, "햄버거4", 4000);
+        BList[4] = new ButtonList(R.drawable.bb2, "햄버거5", 3500);
+        BList[5] = new ButtonList(R.drawable.bb2, "햄버거6", 500);
 
 
         button[0].setOnClickListener(new View.OnClickListener() {
@@ -113,75 +103,112 @@ public class MenuFragment1 extends Fragment {
                 SubListenner(2);
             }
         });
+
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //정렬 알고리즘으로 대체
-                ButtonList temp;
-                temp = BList[2];
-                BList[2] = BList[0];
-                BList[0] =  temp;
-                ReDrawButton();
-            }
-        });
-        btn[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //정렬 알고리즘 대체
-                ButtonList temp;
-                temp = BList[2];
-                BList[2] = BList[0];
-                BList[0] =  temp;
+                insertion_sort_name(BList,6);
                 ReDrawButton();
             }
         });
 
+        btn[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //가격 정렬
+                insertion_sort_price(BList,6);
+                ReDrawButton();
+            }
+        });
 
         ReDrawButton();
         return layout;
     }
 
-    class ButtonList{
-         public int img;
-         public String Fname;
-         public int price;
-         ButtonList(int id, String name, int price){
-             this.img = id;
-             this.Fname = name;
-             this.price = price;
-         }
+    class ButtonList {
+        public int img;
+        public String Fname;
+        public int price;
+
+        ButtonList(int id, String name, int price) {
+            this.img = id;
+            this.Fname = name;
+            this.price = price;
+        }
     }
+
     void SubListenner(int num) {
         switch (num) {
             case 0:
 
-                ontime.ontimePickerset(BList[0].Fname,BList[0].price);
+                ontime.ontimePickerset(BList[0].Fname, BList[0].price);
                 break;
 
             case 1:
 
-                ontime.ontimePickerset(BList[1].Fname,BList[1].price);
+                ontime.ontimePickerset(BList[1].Fname, BList[1].price);
                 break;
 
             case 2:
 
-                ontime.ontimePickerset(BList[2].Fname,BList[2].price);
+                ontime.ontimePickerset(BList[2].Fname, BList[2].price);
+                break;
+
+            case 3:
+
+                ontime.ontimePickerset(BList[3].Fname, BList[3].price);
+                break;
+            case 4:
+
+                ontime.ontimePickerset(BList[4].Fname, BList[4].price);
+                break;
+            case 5:
+
+                ontime.ontimePickerset(BList[5].Fname, BList[5].price);
                 break;
         }
     }
-    void ReDrawButton(){
-        for(int i = 0;i<3;i++){
-            String bt = "fragm"+(i+1);
-            String tv = "fragt"+(i+1);
-            resId= getResources().getIdentifier(bt, "id", "com.example.a0923firebase");
+
+    void ReDrawButton() {
+        for (int i = 0; i < 6; i++) {
+            String bt = "fragm" + (i + 1);
+            String tv = "fragt" + (i + 1);
+            resId = getResources().getIdentifier(bt, "id", "com.example.mobilekiosk");
             button[i].setImageResource(BList[i].img);
-            resId= getResources().getIdentifier(tv, "id", "com.example.a0923firebase");
-            text[i].setText("가격: "+BList[i].price);
+            resId = getResources().getIdentifier(tv, "id", "com.example.mobilekiosk");
+            text[i].setText("상품명: " + BList[i].Fname + " (" + BList[i].price + "원)");
         }
 
     }
 
-}
+    void insertion_sort_price(ButtonList list[], int n) {
+        int i, j;
+        ButtonList key;
 
+
+        for (i = 1; i < n; i++) {
+            key = list[i];
+
+            for (j = i - 1; j >= 0 && list[j].price > key.price; j--) {
+                list[j + 1] = list[j];
+            }
+            list[j + 1] = key;
+        }
+    }
+
+    void insertion_sort_name(ButtonList list[], int n) {
+        int i, j;
+        ButtonList key;
+
+        for (i = 1; i < n; i++) {
+            key = list[i];
+            for (j = i - 1; j >= 0 && 0 < list[j].Fname.compareTo(key.Fname); j--) {
+                list[j + 1] = list[j];
+            }
+            list[j + 1] = key;
+        }
+    }
+
+}
 
 
