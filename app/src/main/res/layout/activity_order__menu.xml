@@ -103,7 +103,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="2dp"
             android:layout_toStartOf="@+id/button2"
-            android:text="NEW" />
+            android:text="버거" />
 
         <Button
             android:id="@+id/button2"
@@ -115,7 +115,7 @@
             android:layout_marginEnd="9dp"
             android:layout_marginBottom="0dp"
             android:layout_toStartOf="@+id/button4"
-            android:text="버거" />
+            android:text="세트" />
 
         <Button
             android:id="@+id/button"
@@ -139,8 +139,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toStartOf="@+id/button"
-            android:text="음료" />
+            android:layout_toStartOf="@+id/button" />
     </RelativeLayout>
 
 

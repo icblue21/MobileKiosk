@@ -11,12 +11,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public class PayHistory extends AppCompatActivity implements View.OnClickListener{
 
-    //DatabaseReference Database = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference Database = FirebaseDatabase.getInstance().getReference();
     MenuData MenuList[];
     LinearLayout lm;
     TextView TotalView;
@@ -31,6 +33,7 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
         Initialize();
         AddList();
+        upDB();
     }
 
 
@@ -78,19 +81,18 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
        // upDB();
 
     }
-    /*
+
     void upDB(){
 
 
-        OrderData order = new OrderData("햄버거", 5,1000);
+        OrderData order = new OrderData("햄ㅁㄴㄻㅇㄻㄴ버거", 005,1000000);
         Database.child("OrderList").child("order1").setValue(order);
-
         Query query = FirebaseDatabase.getInstance().getReference().child("OrderList").orderByChild("name");
         //String data = query.toString();
-        query.addListenerForSingleValueEvent(postListener);
+
 
     }
-    */
+
 
 
 
