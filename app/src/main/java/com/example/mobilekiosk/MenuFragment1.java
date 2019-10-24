@@ -103,6 +103,32 @@ public class MenuFragment1 extends Fragment {
                 SubListenner(2);
             }
         });
+        button[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(3);
+            }
+        });
+        button[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(4);
+            }
+        });
+        button[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(5);
+            }
+        });
+
+
+        button[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(2);
+            }
+        });
 
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override

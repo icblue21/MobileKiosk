@@ -27,9 +27,11 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     MenuData MenuList[];
     LinearLayout lm;
     TextView TotalView;
+    String UserNum;
     int totalfee;
     int totalquantity;
     String OrderNum;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +73,14 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     public void Initialize(){
         lm = (LinearLayout)findViewById(R.id.PayHistoryText);
         TotalView = (TextView)findViewById(R.id.textView12);
+
         totalfee = 0;
         totalquantity = 0;
 
     }
+
     void AddList(){
+
 
         for(int i = 0;i<100;i++){
             try {
@@ -94,9 +99,12 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
         }
         TotalView.setText("Total        "+totalquantity+"       "+totalfee );
+        //TotalView.setText(UserNum);
        // upDB();
 
     }
+
+
 
     void GetFireData(){
         Database.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,7 +125,6 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
     }
     void upDB(String str){
-
 
         String temp = str;
         Integer i = Integer.valueOf(temp);

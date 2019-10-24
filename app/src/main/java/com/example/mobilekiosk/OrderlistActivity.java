@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class OrderlistActivity extends AppCompatActivity {
+public class OrderlistActivity extends AppCompatActivity implements BusProvider.OntimeListener {
     DatabaseReference Database = FirebaseDatabase.getInstance().getReference();
     OrderData OrderList;
     LinearLayout lm2;
@@ -70,6 +70,11 @@ public class OrderlistActivity extends AppCompatActivity {
         //totalquantity += OrderList.quantity;
         //totalfee += OrderList.totalprice;
 
+    }
+    public void ontimePickerset(String name, int price) {
+        if(price<0) {
+            finish();
+        }
     }
 
 
