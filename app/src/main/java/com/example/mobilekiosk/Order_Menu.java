@@ -55,12 +55,15 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     public void InitializeView()
     {
-
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         mybutton1 = (Button)findViewById(R.id.button1);
         mybutton2 = (Button)findViewById(R.id.button2);
         mybutton3 = (Button)findViewById(R.id.button4);
         mybutton4 = (Button)findViewById(R.id.button);
         mybutton5 = (Button)findViewById(R.id.button5);
+        MenuFragment1 fragment1 = new MenuFragment1();
+        transaction.replace(R.id.fragframe, fragment1);
+        transaction.commit();
 
         SetId = 0;
         SetCode = 0;

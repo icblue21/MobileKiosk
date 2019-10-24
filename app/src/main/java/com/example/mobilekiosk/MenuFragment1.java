@@ -185,7 +185,6 @@ public class MenuFragment1 extends Fragment {
         int i, j;
         ButtonList key;
 
-
         for (i = 1; i < n; i++) {
             key = list[i];
 
@@ -208,7 +207,6 @@ public class MenuFragment1 extends Fragment {
             list[j + 1] = key;
         }
     }
-
 }
 
 

@@ -78,9 +78,9 @@ public class MenuFragment4 extends Fragment {
         for(int i = 0;i<3;i++){
             String bt = "fragm"+(i+1);
             String tv = "fragt"+(i+1);
-            resId= getResources().getIdentifier(bt, "id", "com.example.a0923firebase");
+            resId= getResources().getIdentifier(bt, "id", "com.example.mobilekiosk");
             button[i] = (ImageButton)layout.findViewById(resId);
-            resId= getResources().getIdentifier(tv, "id", "com.example.a0923firebase");
+            resId= getResources().getIdentifier(tv, "id", "com.example.mobilekiosk");
             text[i] = (TextView) layout.findViewById(resId);
         }
 
