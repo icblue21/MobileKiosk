@@ -22,7 +22,6 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     TextView TotalView;
     int totalfee;
     int totalquantity;
-    ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
