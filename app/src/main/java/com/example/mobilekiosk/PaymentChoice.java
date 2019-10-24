@@ -13,6 +13,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
     ImageButton CreditCard;
     ImageButton Paycobutton;
     MenuData MenuList[];
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_payment_choice);
         Intent intent = getIntent();
         MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
+        userID = intent.getStringExtra("userID");
         this.InitializeView();
         this.SetListener();
 
@@ -32,6 +34,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
             case R.id.PaycoButton:
                 Intent intent = new Intent(this,PayHistory.class);
                 intent.putExtra("MenuData",MenuList);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
 
                 break;

@@ -12,6 +12,7 @@ public class OrderChooseActivity extends AppCompatActivity {
 
     ImageView orderlist;
     ImageView order;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,8 @@ public class OrderChooseActivity extends AppCompatActivity {
 
         orderlist = (ImageView)findViewById(R.id.orderlist) ;
         order = (ImageView)findViewById(R.id.map);
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("userID");
 
         Button orderlistButton = (Button) findViewById(R.id.orderlistButton);
         Button orderButton = (Button) findViewById(R.id.orderButton);
@@ -28,6 +31,7 @@ public class OrderChooseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent orderlistIntent = new Intent(OrderChooseActivity.this, OrderlistActivity.class);
+                orderlistIntent.putExtra("userID",userID);
                 OrderChooseActivity.this.startActivity(orderlistIntent);
             }
         });
@@ -36,6 +40,7 @@ public class OrderChooseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent orderIntent = new Intent(OrderChooseActivity.this, MainActivity.class);
+                orderIntent.putExtra("userID",userID);
                 OrderChooseActivity.this.startActivity(orderIntent);
             }
         });

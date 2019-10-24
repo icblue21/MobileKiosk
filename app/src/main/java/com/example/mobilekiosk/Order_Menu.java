@@ -34,10 +34,14 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
     //LinkedList<MenuData>
     LinearLayout lm;
     LinearLayout.LayoutParams params;
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order__menu);
+
+        Intent userIDintent = getIntent();
+        userID = userIDintent.getStringExtra("userID");
 
         this.InitializeView();
         this.SetListener();
@@ -239,6 +243,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
     void StartPaymentChoice(){
         Intent intent = new Intent(this,PaymentChoice.class);
         intent.putExtra("MenuData",MenuList);
+        intent.putExtra("userID",userID);
         startActivity(intent);
 
     }

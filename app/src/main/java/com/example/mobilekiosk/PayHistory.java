@@ -27,9 +27,11 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     MenuData MenuList[];
     LinearLayout lm;
     TextView TotalView;
+    TextView test;
     int totalfee;
     int totalquantity;
     String OrderNum;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         Intent intent = getIntent();
 
         MenuList = (MenuData[]) intent.getSerializableExtra("MenuData");
+        userID = intent.getStringExtra("userID");
+
 
         Initialize();
         AddList();
