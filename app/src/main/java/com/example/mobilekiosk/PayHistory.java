@@ -27,10 +27,8 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     MenuData MenuList[];
     LinearLayout lm;
     TextView TotalView;
-    TextView test;
     int totalfee;
     int totalquantity;
-    String OrderNum;
     String userID;
 
     @Override

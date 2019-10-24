@@ -5,56 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".OrderChooseActivity">
+    tools:context=".TakeoutChooseActivity">
+
     <Button
-        android:id="@+id/orderlistButton"
+        android:id="@+id/takeoutButton"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="32dp"
-        android:text="주문 내역 조회"
+        android:background="@drawable/rounded_button"
+        android:text="포장"
+        android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/rounded_button"
-        app:layout_constraintEnd_toEndOf="@+id/orderlist"
-        app:layout_constraintStart_toStartOf="@+id/orderlist"
-        app:layout_constraintTop_toBottomOf="@+id/orderlist" />
+        app:layout_constraintEnd_toEndOf="@+id/tekeout"
+        app:layout_constraintStart_toStartOf="@+id/tekeout"
+        app:layout_constraintTop_toBottomOf="@+id/tekeout" />
 
     <Button
-        android:id="@+id/orderButton"
+        android:id="@+id/cutleryButton"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="32dp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:text="주문 하기"
         android:background="@drawable/rounded_button"
-        app:layout_constraintEnd_toEndOf="@+id/order"
-        app:layout_constraintStart_toStartOf="@+id/order"
-        app:layout_constraintTop_toBottomOf="@+id/order" />
+        android:text="매장 식사"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cutlery"
+        app:layout_constraintStart_toStartOf="@+id/cutlery"
+        app:layout_constraintTop_toBottomOf="@+id/cutlery" />
 
     <ImageView
-        android:id="@+id/order"
+        android:id="@+id/cutlery"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:src="@drawable/order"
-        app:layout_constraintBottom_toBottomOf="@+id/orderlist"
-        app:layout_constraintStart_toEndOf="@+id/orderlist"
-        app:layout_constraintTop_toTopOf="@+id/orderlist" />
+        android:src="@drawable/cutlery"
+        app:layout_constraintBottom_toBottomOf="@+id/tekeout"
+        app:layout_constraintStart_toEndOf="@+id/tekeout"
+        app:layout_constraintTop_toTopOf="@+id/tekeout" />
 
     <ImageView
-        android:id="@+id/orderlist"
+        android:id="@+id/tekeout"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="180dp"
-        android:layout_marginEnd="230dp"
-        android:layout_marginRight="230dp"
-        android:src="@drawable/orderlist"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/takeout"
+        app:layout_constraintEnd_toStartOf="@+id/cutlery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -19,8 +19,8 @@ public class OrderChooseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_choose);
 
-        orderlist = (ImageView)findViewById(R.id.orderlist) ;
-        order = (ImageView)findViewById(R.id.map);
+        orderlist = (ImageView)findViewById(R.id.tekeout) ;
+        order = (ImageView)findViewById(R.id.cutlery);
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
 

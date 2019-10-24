@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Intent userIDintent = getIntent();
         userID = userIDintent.getStringExtra("userID");
 
-        map = (ImageView)findViewById(R.id.map);
+        map = (ImageView)findViewById(R.id.cutlery);
         btn_bobburger = (ImageButton)findViewById(R.id.btn_bobburger);
 
         btn_bobburger.setOnClickListener(new View.OnClickListener() {
