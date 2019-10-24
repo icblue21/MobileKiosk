@@ -1,5 +1,6 @@
 package com.example.mobilekiosk;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,10 +11,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class PayHistory extends AppCompatActivity implements View.OnClickListener{
@@ -24,18 +29,22 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     TextView TotalView;
     int totalfee;
     int totalquantity;
+    String OrderNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_history);
         Intent intent = getIntent();
-        MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
+
+        MenuList = (MenuData[]) intent.getSerializableExtra("MenuData");
+
         Initialize();
         AddList();
-        upDB();
-    }
+        GetFireData();
 
+
+    }
 
 
 
@@ -49,6 +58,13 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
     void SetListener(){
 
+
+    }
+    class GetOrder{
+        int order;
+        GetOrder(int n){
+            order = n;
+        }
 
     }
 
@@ -77,20 +93,52 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
             }
 
         }
-        TotalView.setText("Total        "+totalquantity+"       "+totalfee);
+        TotalView.setText("Total        "+totalquantity+"       "+totalfee );
        // upDB();
 
     }
 
-    void upDB(){
+    void GetFireData(){
+        Database.addListenerForSingleValueEvent(new ValueEventListener() {
+            String str;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.child("OrderCount").getChildren()) {
+                    str = ""+snapshot.getValue();
+                }
+                upDB(str);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    void upDB(String str){
 
 
-        OrderData order = new OrderData("햄ㅁㄴㄻㅇㄻㄴ버거", 005,1000000);
-        Database.child("OrderList").child("order1").setValue(order);
-        Query query = FirebaseDatabase.getInstance().getReference().child("OrderList").orderByChild("name");
+        String temp = str;
+        Integer i = Integer.valueOf(temp);
+        i++;
+
+        for(int j = 0;j<100;j++){
+            try {
+                if (MenuList[j].GetQuntity() != 0) {
+                    OrderData order = new OrderData(MenuList[j].GetName(), MenuList[j].GetQuntity(),MenuList[j].GetTotal());
+                    Database.child("OrderList").child("order"+i).child("MenuList"+j).setValue(order);
+                }
+            }catch(Exception e){
+                break;
+            }
+
+        }
+
+        //Database.child("OrderCount").setValue(Integer.parseInt(str)+1);
+        Database.child("OrderCount").child("i").setValue(i);
+        //Query query = FirebaseDatabase.getInstance().getReference().child("OrderList").orderByChild("name");
         //String data = query.toString();
-
-
     }
 
 
@@ -121,22 +169,6 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
 
 */
-    public class OrderData {
 
-            public String name;
-            public int quantity;
-            public int totalprice;
-
-        public OrderData() {
-                // Default constructor required for calls to DataSnapshot.getValue(User.class)
-            }
-
-        public OrderData(String name, int quantity, int price) {
-                this.name = name;
-                this.quantity = quantity;
-                this.totalprice = price;
-
-        }
-    }
 
 }

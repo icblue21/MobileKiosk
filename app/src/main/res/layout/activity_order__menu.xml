@@ -128,7 +128,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="7dp"
             android:layout_marginBottom="0dp"
-            android:text="기타" />
+            android:text="음료" />
 
         <Button
             android:id="@+id/button4"
@@ -139,6 +139,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
+            android:text="사이드"
             android:layout_toStartOf="@+id/button" />
     </RelativeLayout>
 
