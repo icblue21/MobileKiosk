@@ -2,9 +2,7 @@ package com.example.mobilekiosk;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -33,18 +31,21 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
     int SetId;
     int SetCode; //메뉴추가마다 1씩 증가하여 생성할 MenuData 를 지정
     int  k[];
+    MenuData MenuList[];
     int allCount = 0;
     int allPrice = 0;
-    MenuData MenuList[];
+    myQueue queue;
     //LinkedList<MenuData>
     LinearLayout lm;
     LinearLayout.LayoutParams params;
-    myQueue queue;
-
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order__menu);
+
+        Intent userIDintent = getIntent();
+        userID = userIDintent.getStringExtra("userID");
 
         queue = new myQueue();
         this.InitializeView();
@@ -63,7 +64,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     public void InitializeView()
     {
-
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         mybutton1 = (Button)findViewById(R.id.button1);
         mybutton2 = (Button)findViewById(R.id.button2);
         mybutton3 = (Button)findViewById(R.id.button4);
@@ -71,6 +72,9 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         mybutton5 = (Button)findViewById(R.id.button5);
         resultView = (TextView) findViewById(R.id.resultView);
         resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+        MenuFragment1 fragment1 = new MenuFragment1();
+        transaction.replace(R.id.fragframe, fragment1);
+        transaction.commit();
 
         SetId = 0;
         SetCode = 0;
@@ -104,6 +108,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
             case R.id.button5:
                 StartPaymentChoice();
                 break;
+
         }
     }
     public void SetListener()
@@ -113,6 +118,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         mybutton3.setOnClickListener(this);
         mybutton4.setOnClickListener(this);
         mybutton5.setOnClickListener(this);
+
     }
 
     private void callFragment(int frament_no){
@@ -187,7 +193,6 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         btn3.setId(SetId + 3);
         btn3.setText("삭제");
         btn3.setLayoutParams(ll3);
-
         k[SetCode] = 1;
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +220,8 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
                 //k[position]--;
                 int i = position;//
+                if(MenuList[i].GetQuntity() == 1)
+                    return;
                 MenuList[i].SetQuntity(MenuList[i].GetQuntity()-1);//수량 감소
                 tvAge.setText("   수량" + MenuList[i].GetQuntity() + " ");
                 tvPrice.setText(""+MenuList[i].GetTotal());
@@ -239,8 +246,8 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                 resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
                 MenuList[i].remove();
 
-                System.out.println(i + "번째 요소 " + MenuList[i].GetName() + " 삭제시도");
                 queue.delete(i);
+
             }
 
         });
@@ -264,13 +271,11 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
     }
 
     void StartPaymentChoice(){
-
-
         Intent intent = new Intent(this,PaymentChoice.class);
         String info = queue.printAll();
-        System.out.println(info);
-        intent.putExtra("MenuData",MenuList);
         intent.putExtra("wholeInfo",info);
+        intent.putExtra("MenuData",MenuList);
+        intent.putExtra("userID",userID);
         startActivity(intent);
 
     }

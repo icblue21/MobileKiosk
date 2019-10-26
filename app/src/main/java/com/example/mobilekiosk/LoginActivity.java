@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
                                 //여기 수정 OrderChoose로.
                                 Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
+                                intent.putExtra("userID",userID);
                                 startActivity(intent);
                             }
                             else{
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginRequest loginRequest = new LoginRequest(userID, userPassword, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
+                
             }
         });
     }

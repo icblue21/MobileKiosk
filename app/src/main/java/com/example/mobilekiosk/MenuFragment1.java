@@ -62,6 +62,7 @@ public class MenuFragment1 extends Fragment {
         btn[0] = (Button) layout.findViewById(R.id.button6);
         btn[1] = (Button) layout.findViewById(R.id.button7);
 
+
         for (int i = 0; i < 6; i++) {
             String bt = "fragm" + (i + 1);
             String tv = "fragt" + (i + 1);
@@ -208,7 +209,6 @@ public class MenuFragment1 extends Fragment {
         int i, j;
         ButtonList key;
 
-
         for (i = 1; i < n; i++) {
             key = list[i];
 
@@ -231,7 +231,6 @@ public class MenuFragment1 extends Fragment {
             list[j + 1] = key;
         }
     }
-
 }
 
 

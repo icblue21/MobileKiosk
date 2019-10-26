@@ -1,6 +1,5 @@
 package com.example.mobilekiosk;
 
-import java.util.LinkedList;
 
 class QNode {
     String item, count, price;
