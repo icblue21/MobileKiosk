@@ -62,7 +62,6 @@ public class MenuFragment1 extends Fragment {
         btn[0] = (Button) layout.findViewById(R.id.button6);
         btn[1] = (Button) layout.findViewById(R.id.button7);
 
-
         for (int i = 0; i < 6; i++) {
             String bt = "fragm" + (i + 1);
             String tv = "fragt" + (i + 1);
@@ -101,6 +100,24 @@ public class MenuFragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 SubListenner(2);
+            }
+        });
+        button[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(3);
+            }
+        });
+        button[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(4);
+            }
+        });
+        button[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(5);
             }
         });
 
@@ -142,29 +159,35 @@ public class MenuFragment1 extends Fragment {
             case 0:
 
                 ontime.ontimePickerset(BList[0].Fname, BList[0].price);
+                ((Order_Menu)getActivity()).setResultView(BList[0].price);
                 break;
 
             case 1:
 
                 ontime.ontimePickerset(BList[1].Fname, BList[1].price);
+                ((Order_Menu)getActivity()).setResultView(BList[1].price);
                 break;
 
             case 2:
 
                 ontime.ontimePickerset(BList[2].Fname, BList[2].price);
+                ((Order_Menu)getActivity()).setResultView(BList[2].price);
                 break;
 
             case 3:
 
                 ontime.ontimePickerset(BList[3].Fname, BList[3].price);
+                ((Order_Menu)getActivity()).setResultView(BList[3].price);
                 break;
             case 4:
 
                 ontime.ontimePickerset(BList[4].Fname, BList[4].price);
+                ((Order_Menu)getActivity()).setResultView(BList[4].price);
                 break;
             case 5:
 
                 ontime.ontimePickerset(BList[5].Fname, BList[5].price);
+                ((Order_Menu)getActivity()).setResultView(BList[5].price);
                 break;
         }
     }

@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import org.w3c.dom.Text;
 
 
 public class PayHistory extends AppCompatActivity implements View.OnClickListener{
@@ -22,7 +22,8 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     TextView TotalView;
     int totalfee;
     int totalquantity;
-    ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
+    String wholeInfo;
+    ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_pay_history);
         Intent intent = getIntent();
         MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
+        wholeInfo = (String)intent.getSerializableExtra("wholeInfo");
         Initialize();
         AddList();
     }
@@ -52,21 +54,31 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
     public void Initialize(){
         lm = (LinearLayout)findViewById(R.id.PayHistoryText);
+        returnButton = (ImageButton) findViewById(R.id.returnButton);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),OrderChooseActivity.class);
+                startActivity(intent);
+            }
+        });
         TotalView = (TextView)findViewById(R.id.textView12);
         totalfee = 0;
         totalquantity = 0;
 
     }
     void AddList(){
+        TextView temp = new TextView(this);
+        //temp.setTextSize(25);
 
         for(int i = 0;i<100;i++){
             try {
                 if (MenuList[i].GetQuntity() != 0) {
-                    TextView temp = new TextView(this);
-                    String str = "상품명: " + MenuList[i].GetName() + "   가격: " + MenuList[i].GetTotal() + "  주문수량: "+ MenuList[i].GetQuntity();
-                    temp.setText(str);
-                    temp.setTextSize(30);
-                    lm.addView(temp);
+                    //TextView temp = new TextView(this);
+                    //String str = "상품명: " + MenuList[i].GetName() + "\n가격: " + MenuList[i].GetTotal() + "\n주문수량: "+ MenuList[i].GetQuntity() + "\n";
+                    temp.setText(wholeInfo);
+                    temp.setTextSize(25);
+                    //lm.addView(temp);
                     totalquantity+=MenuList[i].GetQuntity();
                     totalfee+=MenuList[i].GetTotal();
                 }
@@ -75,6 +87,8 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
             }
 
         }
+        lm.addView(temp);
+        //temp.setText(wholeInfo);
         TotalView.setText("Total        "+totalquantity+"       "+totalfee);
        // upDB();
 

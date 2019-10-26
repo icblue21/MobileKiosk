@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,6 +14,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
     ImageButton CreditCard;
     ImageButton Paycobutton;
     MenuData MenuList[];
+    String wholeInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_payment_choice);
         Intent intent = getIntent();
         MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
+        wholeInfo = (String)intent.getSerializableExtra("wholeInfo");
+        Log.d("getIntent", wholeInfo);
         this.InitializeView();
         this.SetListener();
 
@@ -31,6 +35,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.PaycoButton:
                 Intent intent = new Intent(this,PayHistory.class);
+                intent.putExtra("wholeInfo",wholeInfo);
                 intent.putExtra("MenuData",MenuList);
                 startActivity(intent);
 
