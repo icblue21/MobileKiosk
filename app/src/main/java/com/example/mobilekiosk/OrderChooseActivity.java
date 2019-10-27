@@ -12,14 +12,17 @@ public class OrderChooseActivity extends AppCompatActivity implements BusProvide
 
     ImageView orderlist;
     ImageView order;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_choose);
 
-        orderlist = (ImageView)findViewById(R.id.orderlist) ;
-        order = (ImageView)findViewById(R.id.map);
+        orderlist = (ImageView)findViewById(R.id.tekeout) ;
+        order = (ImageView)findViewById(R.id.cutlery);
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("userID");
 
         Button orderlistButton = (Button) findViewById(R.id.orderlistButton);
         Button orderButton = (Button) findViewById(R.id.orderButton);
@@ -28,6 +31,7 @@ public class OrderChooseActivity extends AppCompatActivity implements BusProvide
             @Override
             public void onClick(View v) {
                 Intent orderlistIntent = new Intent(OrderChooseActivity.this, OrderlistActivity.class);
+                orderlistIntent.putExtra("userID",userID);
                 OrderChooseActivity.this.startActivity(orderlistIntent);
             }
         });
@@ -36,6 +40,7 @@ public class OrderChooseActivity extends AppCompatActivity implements BusProvide
             @Override
             public void onClick(View v) {
                 Intent orderIntent = new Intent(OrderChooseActivity.this, MainActivity.class);
+                orderIntent.putExtra("userID",userID);
                 OrderChooseActivity.this.startActivity(orderIntent);
             }
         });
@@ -45,5 +50,6 @@ public class OrderChooseActivity extends AppCompatActivity implements BusProvide
         if(price<0) {
             finish();
         }
+    public void onBackPressed(){
     }
 }

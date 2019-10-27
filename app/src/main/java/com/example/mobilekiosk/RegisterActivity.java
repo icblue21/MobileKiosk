@@ -40,7 +40,7 @@ import org.json.JSONObject;
                 String userID = et_id.getText().toString();
                 String userPassword = et_pass.getText().toString();
                 String userName = et_name.getText().toString();
-                int userNumber = Integer.parseInt(et_number.getText().toString());
+                String userNumber =  et_number.getText().toString();
                 String userCard = et_card.getText().toString();
 
                 Response.Listener<String>  responseListener = new Response.Listener<String>() {

@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.296">
+        app:layout_constraintVertical_bias="0.234">
 
         <LinearLayout
             android:id="@+id/PayHistoryText"
@@ -46,8 +46,12 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="379dp"
+        android:layout_width="350dp"
         android:layout_height="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +60,7 @@
         app:layout_constraintVertical_bias="0.691" />
 
     <ImageButton
-        android:id="@+id/imageButton9"
+        android:id="@+id/returnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

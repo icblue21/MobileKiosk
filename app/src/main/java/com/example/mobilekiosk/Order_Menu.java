@@ -28,19 +28,30 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
     Button mybutton5; //주문버튼
     int totalquantity;
     int totalfee;
+    TextView resultView;
     ImageButton myIbutton1;
     int SetId;
     int SetCode; //메뉴추가마다 1씩 증가하여 생성할 MenuData 를 지정
     int  k[];
     MenuData MenuList[];
     TextView Totalbill;
+    int allCount = 0;
+    int allPrice = 0;
+    myQueue queue;
     //LinkedList<MenuData>
     LinearLayout lm;
     LinearLayout.LayoutParams params;
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order__menu);
+
+        Intent userIDintent = getIntent();
+        userID = userIDintent.getStringExtra("userID");
+
+
+        queue = new myQueue();
 
         this.InitializeView();
         this.SetListener();
@@ -67,7 +78,12 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         mybutton3 = (Button)findViewById(R.id.button4);
         mybutton4 = (Button)findViewById(R.id.button);
         mybutton5 = (Button)findViewById(R.id.button5);
+
+        resultView = (TextView) findViewById(R.id.resultView);
+        resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+
         MenuFragment1 fragment1 = new MenuFragment1();
+      
         transaction.replace(R.id.fragframe, fragment1);
         transaction.commit();
         Totalbill = (TextView)findViewById(R.id.textView9);
@@ -158,7 +174,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         // LinearLayout 생성
         final LinearLayout ll = new LinearLayout(this);
         final LinearLayout.LayoutParams ll2 = new LinearLayout.LayoutParams(120,120);
-        final LinearLayout.LayoutParams ll3 = new LinearLayout.LayoutParams(160,120);
+        final LinearLayout.LayoutParams ll3 = new LinearLayout.LayoutParams(180,120);
         ll.setOrientation(LinearLayout.HORIZONTAL);
 
         // TextView 생성
@@ -166,7 +182,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         tvProdc.setText("상품명: "+ name + " ");
 
         final TextView tvAge = new TextView(this);
-        tvAge.setText("   수량" + 1 + "  ");
+        tvAge.setText("   수량" + 1 + " ");
 
         final TextView tvPrice = new TextView(this);
         tvPrice.setText(""+price+"");
@@ -199,9 +215,15 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                 //k[position]++;
                 int i = position;
                 MenuList[i].SetQuntity(MenuList[i].GetQuntity()+1);//수량 증가
-                tvAge.setText("   수량" + MenuList[i].GetQuntity() + "  ");
+                tvAge.setText("   수량" + MenuList[i].GetQuntity() + " ");
                 tvPrice.setText(""+MenuList[i].GetTotal());
                 AddBill(MenuList[i].GetPrice(),1);
+
+                allCount++;
+                allPrice += MenuList[i].GetPrice();
+                resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+
+                queue.changeValue(i,MenuList[i].GetQuntity() + "",MenuList[i].GetTotal() + "");
 
             }
 
@@ -212,10 +234,18 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
                 //k[position]--;
                 int i = position;//
+                if(MenuList[i].GetQuntity() == 1)
+                    return;
                 MenuList[i].SetQuntity(MenuList[i].GetQuntity()-1);//수량 감소
-                tvAge.setText("   수량" + MenuList[i].GetQuntity() + "  ");
+                tvAge.setText("   수량" + MenuList[i].GetQuntity() + " ");
                 tvPrice.setText(""+MenuList[i].GetTotal());
                 DeleteBill(MenuList[i].GetPrice(),1);
+
+                allCount--;
+                allPrice -= MenuList[i].GetPrice();
+                resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+
+                queue.changeValue(i,MenuList[i].GetQuntity() + "",MenuList[i].GetTotal() + "");
 
             }
 
@@ -227,6 +257,13 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
                 DeleteBill(MenuList[i].GetTotal(),MenuList[i].GetQuntity());
                 MenuList[i].remove();
                 lm.removeView(ll);
+
+                allCount -= MenuList[i].GetQuntity();
+                allPrice -= MenuList[i].GetTotal();
+                resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+                MenuList[i].remove();
+
+                queue.delete(i);
 
             }
 
@@ -240,6 +277,9 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         ll.addView(tvPrice);
         ll.addView(btn3);
 
+        String num = tvAge.getText().toString().substring(5,6);
+        queue.enqueue(tvProdc.getText().toString(),num,tvPrice.getText().toString());
+
         //LinearLayout 정의된거 add
 
         lm.addView(ll);
@@ -251,7 +291,10 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     void StartPaymentChoice(){
         Intent intent = new Intent(this,PaymentChoice.class);
+        String info = queue.printAll();
+        intent.putExtra("wholeInfo",info);
         intent.putExtra("MenuData",MenuList);
+        intent.putExtra("userID",userID);
         startActivity(intent);
 
     }
@@ -267,5 +310,17 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         totalquantity-=j;
         Totalbill.setText("총 가격: "+totalfee+"\n총 수량: "+totalquantity+"개");
 
+
+    public void setResultView(int price) {
+        allCount++;
+        allPrice += price;
+
+        resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+
+    public void onBackPressed(){
+
+        Intent returnintent = new Intent(this,MainActivity.class);
+        startActivity(returnintent);
+        super.onBackPressed();
     }
 }

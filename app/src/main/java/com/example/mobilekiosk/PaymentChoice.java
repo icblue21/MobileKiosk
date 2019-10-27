@@ -22,6 +22,8 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
 
 
 
+    String wholeInfo;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,9 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_payment_choice);
         Intent intent = getIntent();
         MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
+        userID = intent.getStringExtra("userID");
+        wholeInfo = (String) intent.getSerializableExtra("wholeInfo");
+
         this.InitializeView();
         this.SetListener();
 
@@ -41,7 +46,10 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
             case R.id.PaycoButton:
                 ActivityKill();
                 Intent intent = new Intent(this,TakeoutChooseActivity.class);
+                Intent intent = new Intent(this,TakeoutChooseActivity.class);
+                intent.putExtra("wholeInfo",wholeInfo);
                 intent.putExtra("MenuData",MenuList);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
 
 
