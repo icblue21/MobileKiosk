@@ -47,9 +47,11 @@ public class OrderChooseActivity extends AppCompatActivity implements BusProvide
 
     }
     public void ontimePickerset(String name, int price) {
-        if(price<0) {
+        if (price < 0) {
             finish();
         }
+    }
+
     public void onBackPressed(){
     }
 }

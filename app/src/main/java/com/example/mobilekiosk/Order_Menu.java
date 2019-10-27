@@ -288,7 +288,6 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         AddBill(price,1);
 
     }
-
     void StartPaymentChoice(){
         Intent intent = new Intent(this,PaymentChoice.class);
         String info = queue.printAll();
@@ -305,17 +304,19 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    void DeleteBill(int i, int j){
-        totalfee-=i;
-        totalquantity-=j;
-        Totalbill.setText("총 가격: "+totalfee+"\n총 수량: "+totalquantity+"개");
+    void DeleteBill(int i, int j) {
+        totalfee -= i;
+        totalquantity -= j;
+        Totalbill.setText("총 가격: " + totalfee + "\n총 수량: " + totalquantity + "개");
+    }
 
 
-    public void setResultView(int price) {
-        allCount++;
-        allPrice += price;
+    public void setResultView ( int price) {
+            allCount++;
+            allPrice += price;
 
-        resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+            resultView.setText("개수: " + allCount + "개\n" + "가격: " + allPrice + "원");
+    }
 
     public void onBackPressed(){
 

@@ -46,7 +46,6 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
             case R.id.PaycoButton:
                 ActivityKill();
                 Intent intent = new Intent(this,TakeoutChooseActivity.class);
-                Intent intent = new Intent(this,TakeoutChooseActivity.class);
                 intent.putExtra("wholeInfo",wholeInfo);
                 intent.putExtra("MenuData",MenuList);
                 intent.putExtra("userID",userID);
