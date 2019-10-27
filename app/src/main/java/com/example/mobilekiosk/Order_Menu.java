@@ -47,7 +47,9 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         Intent userIDintent = getIntent();
         userID = userIDintent.getStringExtra("userID");
 
+
         queue = new myQueue();
+
         this.InitializeView();
         this.SetListener();
 
@@ -70,9 +72,12 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         mybutton3 = (Button)findViewById(R.id.button4);
         mybutton4 = (Button)findViewById(R.id.button);
         mybutton5 = (Button)findViewById(R.id.button5);
+
         resultView = (TextView) findViewById(R.id.resultView);
         resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+
         MenuFragment1 fragment1 = new MenuFragment1();
+      
         transaction.replace(R.id.fragframe, fragment1);
         transaction.commit();
 
@@ -280,10 +285,18 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
 
     }
 
+
     public void setResultView(int price) {
         allCount++;
         allPrice += price;
 
         resultView.setText("개수: " + allCount +"개\n" + "가격: " + allPrice + "원");
+
+    public void onBackPressed(){
+
+        Intent returnintent = new Intent(this,MainActivity.class);
+        startActivity(returnintent);
+        super.onBackPressed();
+
     }
 }

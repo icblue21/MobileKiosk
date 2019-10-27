@@ -13,6 +13,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
     ImageButton CreditCard;
     ImageButton Paycobutton;
     MenuData MenuList[];
+
     String wholeInfo;
     String userID;
 
@@ -65,4 +66,5 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         Paycobutton = (ImageButton)findViewById(R.id.PaycoButton);
 
     }
+
 }
