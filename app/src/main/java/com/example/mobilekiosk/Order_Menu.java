@@ -86,7 +86,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
       
         transaction.replace(R.id.fragframe, fragment1);
         transaction.commit();
-        Totalbill = (TextView)findViewById(R.id.textView9);
+        Totalbill = (TextView)findViewById(R.id.resultView);
         SetId = 0;
         SetCode = 0;
         k = new int[100];
