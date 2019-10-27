@@ -2,7 +2,10 @@ package com.example.mobilekiosk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ public class OrderlistActivity extends AppCompatActivity {
     int ListCount;
     int totalquantity;
     int totalfee;
+    ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,14 @@ public class OrderlistActivity extends AppCompatActivity {
 
         GetFireData();
 
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnintent = new Intent(OrderlistActivity.this, OrderChooseActivity.class);
+                startActivity(returnintent);
+            }
+        });
+
 
     }
 
@@ -36,6 +48,7 @@ public class OrderlistActivity extends AppCompatActivity {
         ListCount = 0;
         totalquantity = 0;
         totalfee = 0;
+        returnButton = (ImageButton)findViewById(R.id.imageButton19);
     }
 
     void GetFireData() {

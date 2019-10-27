@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -29,7 +30,9 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     TextView TotalView;
     int totalfee;
     int totalquantity;
+    String OrderNum;
     String userID;
+    ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,14 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         Initialize();
         AddList();
         GetFireData();
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnintent = new Intent(PayHistory.this, OrderChooseActivity.class);
+                startActivity(returnintent);
+            }
+        });
 
 
     }
@@ -73,6 +84,7 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     public void Initialize(){
         lm = (LinearLayout)findViewById(R.id.PayHistoryText);
         TotalView = (TextView)findViewById(R.id.textView12);
+        returnButton = (ImageButton)findViewById(R.id.returnButton);
         totalfee = 0;
         totalquantity = 0;
 
@@ -141,6 +153,9 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         Database.child("OrderCount").child("i").setValue(i);
         //Query query = FirebaseDatabase.getInstance().getReference().child("OrderList").orderByChild("name");
         //String data = query.toString();
+    }
+    public void onBackPressed(){
+
     }
 
 

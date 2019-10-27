@@ -247,4 +247,10 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         startActivity(intent);
 
     }
+    public void onBackPressed(){
+
+        Intent returnintent = new Intent(this,MainActivity.class);
+        startActivity(returnintent);
+        super.onBackPressed();
+    }
 }

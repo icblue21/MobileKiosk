@@ -61,4 +61,5 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         Paycobutton = (ImageButton)findViewById(R.id.PaycoButton);
 
     }
+
 }
