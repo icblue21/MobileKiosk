@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -30,9 +31,15 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     TextView TotalView;
     int totalfee;
     int totalquantity;
+
+    String wholeInfo;
+    ImageButton returnButton;
+    String userID;
+
     String OrderNum;
     String userID;
     ImageButton returnButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,9 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
         MenuList = (MenuData[]) intent.getSerializableExtra("MenuData");
         userID = intent.getStringExtra("userID");
+
+        wholeInfo = (String) intent.getSerializableExtra("wholeInfo");
+
 
 
         Initialize();
@@ -56,6 +66,8 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
             }
         });
 
+
+    }
 
     }
 
@@ -83,6 +95,14 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
     public void Initialize(){
         lm = (LinearLayout)findViewById(R.id.PayHistoryText);
+        returnButton = (ImageButton) findViewById(R.id.returnButton);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),OrderChooseActivity.class);
+                startActivity(intent);
+            }
+        });
         TotalView = (TextView)findViewById(R.id.textView12);
         returnButton = (ImageButton)findViewById(R.id.returnButton);
         totalfee = 0;
@@ -90,15 +110,16 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
     }
     void AddList(){
+        TextView temp = new TextView(this);
 
         for(int i = 0;i<100;i++){
             try {
                 if (MenuList[i].GetQuntity() != 0) {
-                    TextView temp = new TextView(this);
-                    String str = "상품명: " + MenuList[i].GetName() + "   가격: " + MenuList[i].GetTotal() + "  주문수량: "+ MenuList[i].GetQuntity();
-                    temp.setText(str);
-                    temp.setTextSize(30);
-                    lm.addView(temp);
+                    //TextView temp = new TextView(this);
+                    //String str = "상품명: " + MenuList[i].GetName() + "\n가격: " + MenuList[i].GetTotal() + "\n주문수량: "+ MenuList[i].GetQuntity() + "\n";
+                    temp.setText(wholeInfo);
+                    temp.setTextSize(25);
+                    //lm.addView(temp);
                     totalquantity+=MenuList[i].GetQuntity();
                     totalfee+=MenuList[i].GetTotal();
                 }
@@ -107,6 +128,9 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
             }
 
         }
+
+        lm.addView(temp);
+
         TotalView.setText("Total        "+totalquantity+"       "+totalfee );
        // upDB();
 
@@ -117,6 +141,43 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
             String str;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.child("OrderCount").getChildren()) {
+                    str = ""+snapshot.getValue();
+                }
+                upDB(str);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    void upDB(String str){
+
+
+        String temp = str;
+        Integer i = Integer.valueOf(temp);
+        i++;
+
+        for(int j = 0;j<100;j++){
+            try {
+                if (MenuList[j].GetQuntity() != 0) {
+                    OrderData order = new OrderData(MenuList[j].GetName(), MenuList[j].GetQuntity(),MenuList[j].GetTotal());
+                    Database.child("OrderList").child("order"+i).child("MenuList"+j).setValue(order);
+                }
+            }catch(Exception e){
+                break;
+            }
+
+        }
+
+        //Database.child("OrderCount").setValue(Integer.parseInt(str)+1);
+        Database.child("OrderCount").child("i").setValue(i);
+        //Query query = FirebaseDatabase.getInstance().getReference().child("OrderList").orderByChild("name");
+        //String data = query.toString();
+    }
 
                 for (DataSnapshot snapshot : dataSnapshot.child("OrderCount").getChildren()) {
                     str = ""+snapshot.getValue();
