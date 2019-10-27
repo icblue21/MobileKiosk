@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class OrderChooseActivity extends AppCompatActivity {
+public class OrderChooseActivity extends AppCompatActivity implements BusProvider.OntimeListener{
 
     ImageView orderlist;
     ImageView order;
@@ -46,7 +46,10 @@ public class OrderChooseActivity extends AppCompatActivity {
         });
 
     }
+    public void ontimePickerset(String name, int price) {
+        if(price<0) {
+            finish();
+        }
     public void onBackPressed(){
-
     }
 }

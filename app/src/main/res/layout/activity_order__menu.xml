@@ -68,7 +68,7 @@
         android:layout_width="196dp"
         android:layout_height="83dp"
         android:background="#646464"
-        android:text="TextView"
+        android:text="상품(x)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

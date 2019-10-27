@@ -2,17 +2,25 @@ package com.example.mobilekiosk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class PaymentChoice extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton CreditCard;
     ImageButton Paycobutton;
     MenuData MenuList[];
+
+    private BusProvider.OntimeListener ontime;
+    public static ArrayList<Activity> actList = new ArrayList<Activity>();
+
+
 
     String wholeInfo;
     String userID;
@@ -36,11 +44,14 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()){
             case R.id.PaycoButton:
+                ActivityKill();
+                Intent intent = new Intent(this,TakeoutChooseActivity.class);
                 Intent intent = new Intent(this,TakeoutChooseActivity.class);
                 intent.putExtra("wholeInfo",wholeInfo);
                 intent.putExtra("MenuData",MenuList);
                 intent.putExtra("userID",userID);
                 startActivity(intent);
+
 
                 break;
 
@@ -64,6 +75,10 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
 
         CreditCard = (ImageButton)findViewById(R.id.CreditButton);
         Paycobutton = (ImageButton)findViewById(R.id.PaycoButton);
+
+    }
+    void ActivityKill(){
+
 
     }
 

@@ -122,6 +122,14 @@ public class MenuFragment1 extends Fragment {
             }
         });
 
+
+        button[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubListenner(2);
+            }
+        });
+
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
