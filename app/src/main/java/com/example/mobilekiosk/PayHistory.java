@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -23,16 +22,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class PayHistory extends AppCompatActivity implements View.OnClickListener {
+public class PayHistory extends AppCompatActivity implements View.OnClickListener{
 
     DatabaseReference Database = FirebaseDatabase.getInstance().getReference();
     MenuData MenuList[];
     LinearLayout lm;
     TextView TotalView;
-    String UserNum;
     int totalfee;
     int totalquantity;
-
     String wholeInfo;
     ImageButton returnButton;
     String userID;
@@ -45,7 +42,6 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
         MenuList = (MenuData[]) intent.getSerializableExtra("MenuData");
         userID = intent.getStringExtra("userID");
-
         wholeInfo = (String) intent.getSerializableExtra("wholeInfo");
 
 
@@ -53,100 +49,80 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         AddList();
         GetFireData();
 
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent returnintent = new Intent(PayHistory.this, OrderChooseActivity.class);
-                startActivity(returnintent);
-            }
-        });
-
 
     }
+
 
 
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
-
-        }
     }
 
-    void SetListener() {
+    void SetListener(){
 
 
     }
-
-    class GetOrder {
+    class GetOrder{
         int order;
-
-        GetOrder(int n) {
+        GetOrder(int n){
             order = n;
         }
 
     }
 
-    public void Initialize() {
-        lm = (LinearLayout) findViewById(R.id.PayHistoryText);
+    public void Initialize(){
+        lm = (LinearLayout)findViewById(R.id.PayHistoryText);
         returnButton = (ImageButton) findViewById(R.id.returnButton);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), OrderChooseActivity.class);
+                Intent intent = new Intent(view.getContext(),OrderChooseActivity.class);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
             }
         });
-        TotalView = (TextView) findViewById(R.id.textView12);
-        returnButton = (ImageButton) findViewById(R.id.returnButton);
+        TotalView = (TextView)findViewById(R.id.textView12);
         totalfee = 0;
         totalquantity = 0;
 
     }
+    void AddList(){
+        //TextView temp = new TextView(this);
 
-    void AddList() {
-        TextView temp = new TextView(this);
-
-
-        for (int i = 0; i < 100; i++) {
+        for(int i = 0;i<100;i++){
             try {
                 if (MenuList[i].GetQuntity() != 0) {
-                    //TextView temp = new TextView(this);
-                    //String str = "상품명: " + MenuList[i].GetName() + "\n가격: " + MenuList[i].GetTotal() + "\n주문수량: "+ MenuList[i].GetQuntity() + "\n";
-                    temp.setText(wholeInfo);
+                    TextView temp = new TextView(this);
+                    String str = "상품명: " + MenuList[i].GetName() + "\n가격: " + MenuList[i].GetTotal() + "\n주문수량: "+ MenuList[i].GetQuntity() + "\n";
+                    temp.setText(str);
                     temp.setTextSize(25);
-                    //lm.addView(temp);
-                    totalquantity += MenuList[i].GetQuntity();
-                    totalfee += MenuList[i].GetTotal();
+                    lm.addView(temp);
+                    totalquantity+=MenuList[i].GetQuntity();
+                    totalfee+=MenuList[i].GetTotal();
                 }
-            } catch (Exception e) {
+            }catch(Exception e){
                 break;
             }
 
         }
-
-        lm.addView(temp);
-
-        TotalView.setText("Total        " + totalquantity + "       " + totalfee);
-        //TotalView.setText(UserNum);
-        // upDB();
+        //lm.addView(temp);
+        TotalView.setText("Total        "+totalquantity+"       "+totalfee );
+       // upDB();
 
     }
 
-
-    void GetFireData() {
+    void GetFireData(){
         Database.addListenerForSingleValueEvent(new ValueEventListener() {
             String str;
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot snapshot : dataSnapshot.child("OrderCount").getChildren()) {
-                    str = "" + snapshot.getValue();
+                    str = ""+snapshot.getValue();
                 }
                 upDB(str);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -154,20 +130,20 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         });
 
     }
+    void upDB(String str){
 
-    void upDB(String str) {
 
         String temp = str;
         Integer i = Integer.valueOf(temp);
         i++;
 
-        for (int j = 0; j < 100; j++) {
+        for(int j = 0;j<100;j++){
             try {
                 if (MenuList[j].GetQuntity() != 0) {
-                    OrderData order = new OrderData(MenuList[j].GetName(), MenuList[j].GetQuntity(), MenuList[j].GetTotal());
-                    Database.child("OrderList").child("order" + i).child("MenuList" + j).setValue(order);
+                    OrderData order = new OrderData(MenuList[j].GetName(), MenuList[j].GetQuntity(),MenuList[j].GetTotal());
+                    Database.child("OrderList").child(userID).child("order"+i).child("MenuList"+j).setValue(order);
                 }
-            } catch (Exception e) {
+            }catch(Exception e){
                 break;
             }
 
@@ -179,11 +155,10 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         //String data = query.toString();
     }
 
+
     public void onBackPressed() {
 
     }
-}
-
 
 
 
@@ -213,3 +188,5 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
 
 */
 
+
+}
