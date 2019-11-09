@@ -16,6 +16,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
  public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_id, et_pass, et_name, et_number, et_card;
@@ -42,6 +45,12 @@ import org.json.JSONObject;
                 String userName = et_name.getText().toString();
                 String userNumber =  et_number.getText().toString();
                 String userCard = et_card.getText().toString();
+                String hashpwd;
+
+                if( CheckNumber(userNumber) == false || CheckNumber(userCard) == false){
+                    Toast.makeText(getApplicationContext(),"학번 또는 카드번호가 숫자가 아닙니다.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Response.Listener<String>  responseListener = new Response.Listener<String>() {
                     @Override
@@ -63,12 +72,41 @@ import org.json.JSONObject;
                         }
                     }
                 };
-                RegisterRequest registerRequest = new RegisterRequest(userID,userPassword,userName,userNumber,userCard, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
-
+                try {
+                    hashpwd = bytesToHex1(sha256(userPassword));
+                    RegisterRequest registerRequest = new RegisterRequest(userID,hashpwd,userName,userNumber,userCard, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                    queue.add(registerRequest);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
             }
         });
-
     }
+     public static byte[] sha256(String msg) throws NoSuchAlgorithmException {
+         MessageDigest md = MessageDigest.getInstance("SHA-256");
+         md.update(msg.getBytes());
+
+         return md.digest();
+     }
+     public static String bytesToHex1(byte[] bytes) {
+         StringBuffer sb = new StringBuffer();
+         for (byte b : bytes) {
+             sb.append(String.format("%02x", b));
+         }
+         return sb.toString();
+     }
+     public boolean CheckNumber(String str){
+        char check;
+
+        if(str.equals(""))
+            return false;
+        for( int i = 0 ; i < str.length() ; i ++){
+            check = str.charAt(i);
+            if( check < 48 || check > 58){
+                return false;
+            }
+        }
+        return true;
+     }
 }
