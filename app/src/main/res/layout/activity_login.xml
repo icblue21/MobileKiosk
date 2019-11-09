@@ -38,7 +38,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:background="@drawable/rounded_eddittext"
         android:hint=" 비밀번호"
         app:layout_constraintStart_toStartOf="@+id/et_id"
