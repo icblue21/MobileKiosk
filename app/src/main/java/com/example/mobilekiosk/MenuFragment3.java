@@ -189,7 +189,8 @@ public class MenuFragment3 extends Fragment {
             resId = getResources().getIdentifier(bt, "id", "com.example.mobilekiosk");
             button[i].setImageResource(BList[i].img);
             resId = getResources().getIdentifier(tv, "id", "com.example.mobilekiosk");
-            text[i].setText("상품명: " + BList[i].Fname + " (" + BList[i].price + "원)");
+            text[i].setTextSize(20);
+            text[i].setText(BList[i].Fname + "\n (" + BList[i].price + "원)");
         }
 
     }
