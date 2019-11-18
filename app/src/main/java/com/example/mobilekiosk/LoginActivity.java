@@ -64,9 +64,19 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 //여기 수정 OrderChoose로.
-                                Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
-                                intent.putExtra("userID", userID);
-                                startActivity(intent);
+                                if(userID.equals("admin")) {
+                                    Intent adminintent = new Intent(LoginActivity.this, AdminActivity.class);
+                                    startActivity(adminintent);
+                                }
+                                else if(userID.equals("storemanage")){
+                                    Intent smintent = new Intent(LoginActivity.this, StoreManageActivity.class);
+                                    startActivity(smintent);
+                                }
+                                else {
+                                    Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
+                                    intent.putExtra("userID", userID);
+                                    startActivity(intent);
+                                }
                             } else {
                                 Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                                 return;
