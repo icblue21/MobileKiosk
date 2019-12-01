@@ -16,6 +16,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
     ImageButton CreditCard;
     ImageButton Paycobutton;
     MenuData MenuList[];
+    String StoreId;
 
     private BusProvider.OntimeListener ontime;
     public static ArrayList<Activity> actList = new ArrayList<Activity>();
@@ -33,7 +34,7 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
         MenuList = (MenuData[])intent.getSerializableExtra("MenuData");
         userID = intent.getStringExtra("userID");
         wholeInfo = (String) intent.getSerializableExtra("wholeInfo");
-
+        StoreId = intent.getStringExtra("storeid");
         this.InitializeView();
         this.SetListener();
 
@@ -56,7 +57,9 @@ public class PaymentChoice extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("wholeInfo",wholeInfo);
                 intent.putExtra("MenuData",MenuList);
                 intent.putExtra("userID",userID);
+                intent.putExtra("storeid",StoreId);
                 startActivity(intent);
+
 
                 break;
 

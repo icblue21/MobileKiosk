@@ -280,6 +280,7 @@ public class Order_Jongro extends AppCompatActivity implements View.OnClickListe
         //intent.putExtra("wholeInfo",info);
         intent.putExtra("MenuData",MenuList);
         intent.putExtra("userID",userID);
+        intent.putExtra("storeid","storeC");
         startActivity(intent);
 
     }

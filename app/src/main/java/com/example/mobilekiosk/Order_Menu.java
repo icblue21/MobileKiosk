@@ -280,6 +280,7 @@ public class Order_Menu extends AppCompatActivity implements View.OnClickListene
         //intent.putExtra("wholeInfo",info);
         intent.putExtra("MenuData",MenuList);
         intent.putExtra("userID",userID);
+        intent.putExtra("storeid","storeA");
         startActivity(intent);
 
     }

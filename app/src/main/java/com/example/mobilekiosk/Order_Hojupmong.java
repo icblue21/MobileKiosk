@@ -280,6 +280,7 @@ public class Order_Hojupmong extends AppCompatActivity implements View.OnClickLi
         //intent.putExtra("wholeInfo",info);
         intent.putExtra("MenuData",MenuList);
         intent.putExtra("userID",userID);
+        intent.putExtra("storeid","storeB");
         startActivity(intent);
 
     }

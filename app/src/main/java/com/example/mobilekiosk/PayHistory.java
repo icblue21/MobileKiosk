@@ -34,6 +34,7 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
     String wholeInfo;
     ImageButton returnButton;
     String userID;
+    String StoreId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         MenuList = (MenuData[]) intent.getSerializableExtra("MenuData");
         userID = intent.getStringExtra("userID");
         wholeInfo = (String) intent.getSerializableExtra("wholeInfo");
+        StoreId = intent.getStringExtra("storeid");
 
 
 
@@ -143,18 +145,19 @@ public class PayHistory extends AppCompatActivity implements View.OnClickListene
         //String temp = str;
         //Integer i = Integer.valueOf(temp);
         //i++;
-
+        Database.child("StoreDB").child(StoreId).child("Proceeding").child(mydate).child("Store").setValue(StoreId);
         for(int j = 0;j<100;j++){
             try {
                 if (MenuList[j].GetQuntity() != 0) {
                     OrderData order = new OrderData(MenuList[j].GetName(), MenuList[j].GetQuntity(),MenuList[j].GetTotal());
-                    Database.child("StoreDB").child("storeA").child("Proceeding").child(mydate).child(userID).child("MenuList"+j).setValue(order);
+                    Database.child("StoreDB").child(StoreId).child("Proceeding").child(mydate).child(userID).child("MenuList"+j).setValue(order);
                 }
             }catch(Exception e){
                 break;
             }
 
         }
+
 
         //Database.child("OrderCount").setValue(Integer.parseInt(str)+1);
         //Database.child("OrderCount").child("i").setValue(i);

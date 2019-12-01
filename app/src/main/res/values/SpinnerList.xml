@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="StoreList">
+        <item>전체</item>
+        <item>봉구스</item>
+        <item>홍주몽</item>
+        <item>종로</item>
+    </string-array>
+
+</resources>
