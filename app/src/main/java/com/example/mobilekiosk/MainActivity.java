@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btn_bobburger;
     ImageButton btn_hojupmong;
     ImageButton btn_jongro;
+    Button btn_search;
+
     String userID;
 
     @Override
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btn_bobburger = (ImageButton)findViewById(R.id.btn_bobburger);
         btn_hojupmong = (ImageButton)findViewById(R.id.btn_hojupmong);
         btn_jongro = (ImageButton)findViewById(R.id.btn_jongro);
+        btn_search  = (Button)findViewById(R.id.btn_search);
 
         btn_bobburger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Order_Jongro.class);
                 intent.putExtra("userID",userID);
                 intent.putExtra("storeid","storeA");
+                startActivity(intent);
+            }
+        });
+        btn_search.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
             }
         });

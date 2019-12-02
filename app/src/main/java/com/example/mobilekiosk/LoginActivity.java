@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(smintent);
                                 }
                                 else {
-                                    Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
+                                    Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                     //Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                     intent.putExtra("userID", userID);
                                     startActivity(intent);
@@ -115,4 +115,3 @@ public class LoginActivity extends AppCompatActivity {
         return sb.toString();
     }
 }
-

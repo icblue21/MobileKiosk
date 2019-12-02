@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Manager_Function"></activity>
-        <activity android:name=".StoreManageActivity" />
+        <activity android:name=".StoreManageActivity"></activity>
         <activity android:name=".AdminActivity" />
+        <activity android:name=".Manager_Function" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -49,6 +49,7 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".SearchActivity" />
     </application>
 
 </manifest>
