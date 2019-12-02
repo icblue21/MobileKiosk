@@ -77,17 +77,17 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Store store = list.get(position);
-            if (store.name.equals("bonggus")) {
+            if (store.name.equals("봉구스밥버거")) {
                 Intent intent = new Intent(SearchActivity.this, Order_Menu.class);
                 intent.putExtra("userID",userID);
                 startActivity(intent);
             }
-            if (store.name.equals("hojupmong")) {
+            if (store.name.equals("호접몽")) {
                 Intent intent = new Intent(SearchActivity.this, Order_Hojupmong.class);
                 intent.putExtra("userID",userID);
                 startActivity(intent);
             }
-            if (store.name.equals("jongro bindadduck")) {
+            if (store.name.equals("종로빈대떡")) {
                 Intent intent = new Intent(SearchActivity.this, Order_Jongro.class);
                 intent.putExtra("userID",userID);
                 startActivity(intent);
