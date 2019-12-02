@@ -27,11 +27,13 @@ public class OrderlistActivity extends AppCompatActivity {
     String SetOreder;
     String SetOreder2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderlist);
         Intent intent = getIntent();
+
         id = intent.getStringExtra("userID");
         Initialize();
         GetFireData();
@@ -57,15 +59,25 @@ public class OrderlistActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.child("StoreDB").getChildren()) {
                     for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").getChildren()) {
                         for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).getChildren()){
-                            str = "StoreDB "+snapshot.getKey()+" Proceeding " + snapshot2.getKey()+" " + snapshot3.getKey();
-                            upList(str,snapshot2.getKey(),1);
+                            if(false == snapshot3.getKey().equals("Store")) {
+                                if(snapshot3.getKey().equals(id)) {
+                                    str = "StoreDB " + snapshot.getKey() + " Proceeding " + snapshot2.getKey() + " " + snapshot3.getKey();
+                                    upList(str, snapshot2.getKey(), 1);
+                                }
+                            }
                         }
 
                     }
                     for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
+
                         for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).getChildren()){
-                            str = "StoreDB "+snapshot.getKey()+" end " + snapshot2.getKey()+" " + snapshot3.getKey();
-                            upList(str,snapshot2.getKey(),2);
+                            if(false == snapshot3.getKey().equals("Store")) {
+                                if(snapshot3.getKey().equals(id)) {
+                                    str = "StoreDB " + snapshot.getKey() + " end " + snapshot2.getKey() + " " + snapshot3.getKey();
+                                    upList(str, snapshot2.getKey(), 2);
+                                }
+                            }
+
                         }
 
                     }

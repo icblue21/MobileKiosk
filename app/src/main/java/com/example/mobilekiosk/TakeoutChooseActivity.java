@@ -14,6 +14,7 @@ public class TakeoutChooseActivity extends AppCompatActivity {
     MenuData MenuList[];
     String userID;
     String wholeInfo;
+    String StoreId;
 
 
     @Override
@@ -27,6 +28,7 @@ public class TakeoutChooseActivity extends AppCompatActivity {
         MenuList = (MenuData[]) intent.getSerializableExtra("MenuData");
         userID = intent.getStringExtra("userID");
         wholeInfo = intent.getStringExtra("wholeInfo");
+        StoreId = intent.getStringExtra("storeid");
 
         takeoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,7 @@ public class TakeoutChooseActivity extends AppCompatActivity {
                 takeoutintent.putExtra("MenuData",MenuList);
                 takeoutintent.putExtra("userID",userID);
                 takeoutintent.putExtra("wholeInfo",wholeInfo);
+                takeoutintent.putExtra("storeid",StoreId);
                 startActivity(takeoutintent);
             }
         });
@@ -46,6 +49,7 @@ public class TakeoutChooseActivity extends AppCompatActivity {
                 cutleryintent.putExtra("MenuData",MenuList);
                 cutleryintent.putExtra("userID",userID);
                 cutleryintent.putExtra("wholeInfo",wholeInfo);
+                cutleryintent.putExtra("storeid",StoreId);
                 startActivity(cutleryintent);
             }
         });
