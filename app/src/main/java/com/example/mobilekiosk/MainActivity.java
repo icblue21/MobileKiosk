@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,Order_Menu.class);
                 intent.putExtra("userID",userID);
+
                 startActivity(intent);
             }
         });
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Order_Hojupmong.class);
-                intent.putExtra("UserID",userID);
+                intent.putExtra("userID",userID);
+                intent.putExtra("storeid","storeA");
                 startActivity(intent);
             }
         });
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Order_Jongro.class);
-                intent.putExtra("UserID",userID);
+                intent.putExtra("userID",userID);
+                intent.putExtra("storeid","storeA");
                 startActivity(intent);
             }
         });

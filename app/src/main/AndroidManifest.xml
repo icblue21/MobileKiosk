@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobilekiosk">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -15,19 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Manager_Function"></activity>
+        <activity android:name=".StoreManageActivity" />
+        <activity android:name=".AdminActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAm1T0QNrX1rO6tWyMMMK1zcbR9FmihnG0"/>
-        <activity android:name=".TakeoutChooseActivity"></activity>
+            android:value="AIzaSyAm1T0QNrX1rO6tWyMMMK1zcbR9FmihnG0" />
+
+        <activity android:name=".TakeoutChooseActivity" />
         <activity android:name=".OrderlistActivity" />
         <activity android:name=".OrderChooseActivity" />
         <activity android:name=".PaymentChoice" />
         <activity android:name=".PayHistory" />
         <activity android:name=".Order_Menu" />
-        <activity android:name=".MapsActivity"/>
-        <activity android:name=".Order_Hojupmong"/>
-        <activity android:name=".Order_Jongro"/>
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".Order_Hojupmong" />
+        <activity android:name=".Order_Jongro" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

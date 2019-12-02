@@ -73,10 +73,10 @@ import java.security.NoSuchAlgorithmException;
                     }
                 };
                 try {
-                    hashpwd = bytesToHex1(sha256(userPassword));
-                    RegisterRequest registerRequest = new RegisterRequest(userID,hashpwd,userName,userNumber,userCard, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                    queue.add(registerRequest);
+                        hashpwd = bytesToHex1(sha256(userPassword));
+                        RegisterRequest registerRequest = new RegisterRequest(userID,hashpwd,userName,userNumber,userCard, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                        queue.add(registerRequest);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }

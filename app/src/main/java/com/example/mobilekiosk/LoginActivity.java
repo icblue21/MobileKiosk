@@ -28,8 +28,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
 
         et_id = findViewById(R.id.et_id);
@@ -64,9 +66,20 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 //여기 수정 OrderChoose로.
-                                Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
-                                intent.putExtra("userID", userID);
-                                startActivity(intent);
+                                if(userID.equals("admin")) {
+                                    Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
+                                    startActivity(intent);
+                                }
+                                else if(userID.equals("storemanage")){
+                                    Intent smintent = new Intent(LoginActivity.this, StoreManageActivity.class);
+                                    startActivity(smintent);
+                                }
+                                else {
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    //Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
+                                    intent.putExtra("userID", userID);
+                                    startActivity(intent);
+                                }
                             } else {
                                 Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                                 return;
