@@ -22,6 +22,7 @@ public class SearchActivity extends AppCompatActivity {
     private EditText editSearch;
     private ListViewAdapter adapter;
     private ArrayList<Store> arraylist;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class SearchActivity extends AppCompatActivity {
 
         editSearch = (EditText) findViewById(R.id.editSearch);
         listView = (ListView) findViewById(R.id.listView);
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("userID");
 
         // 리스트를 생성한다.
         list = new ArrayList<Store>();
@@ -76,14 +79,17 @@ public class SearchActivity extends AppCompatActivity {
             Store store = list.get(position);
             if (store.name.equals("bonggus")) {
                 Intent intent = new Intent(SearchActivity.this, Order_Menu.class);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
             }
             if (store.name.equals("hojupmong")) {
                 Intent intent = new Intent(SearchActivity.this, Order_Hojupmong.class);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
             }
             if (store.name.equals("jongro bindadduck")) {
                 Intent intent = new Intent(SearchActivity.this, Order_Jongro.class);
+                intent.putExtra("userID",userID);
                 startActivity(intent);
             }
         }
@@ -106,7 +112,13 @@ public class SearchActivity extends AppCompatActivity {
             for(int i = 0;i < arraylist.size(); i++)
             {
                 // 입력받은 단어가 가게이름이나 카테고리이름이면
-                if (arraylist.get(i).name.toLowerCase().contains(charText) || arraylist.get(i).category.toLowerCase().contains(charText) )
+                if (arraylist.get(i).name.toLowerCase().contains(charText) || arraylist.get(i).category.toLowerCase().contains(charText)
+                        || arraylist.get(i).menuList[0].toLowerCase().contains(charText)
+                        || arraylist.get(i).menuList[1].toLowerCase().contains(charText)
+                        || arraylist.get(i).menuList[2].toLowerCase().contains(charText)
+                        || arraylist.get(i).menuList[3].toLowerCase().contains(charText)
+                        || arraylist.get(i).menuList[4].toLowerCase().contains(charText)
+                        || arraylist.get(i).menuList[5].toLowerCase().contains(charText))
                 {
                     // 검색된 데이터를 리스트에 추가한다.
                     list.add(arraylist.get(i));
@@ -119,8 +131,34 @@ public class SearchActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList(){
-        list.add(new Store("bonggus","hansik"));
-        list.add(new Store("hojupmong","joongsik"));
-        list.add(new Store("jongro bindadduck","hansik"));
+        String bongList[] = new String[6];
+        String hoList[] = new String[6];
+        String jongList[] = new String[6];
+
+        bongList[0] = "햄쏘야 밥버거";
+        bongList[1] = "햄치즈쏘야 밥버거";
+        bongList[2] = "에그김치제육 밥버거";
+        bongList[3] = "치즈맛있새우 밥버거";
+        bongList[4] = "에그치즈닭갈비 밥버거";
+        bongList[5] = "마요오므라이스 밥버거";
+
+        hoList[0] = "짬뽕";
+        hoList[1] = "짬뽕";
+        hoList[2] = "볶음밥";
+        hoList[3] = "사천탕면";
+        hoList[4] = "잡채밥";
+        hoList[5] = "탕수육";
+
+        jongList[0] = "김치빈대떡";
+        jongList[1] = "고기빈대떡";
+        jongList[2] = "해물빈대떡";
+        jongList[3] = "굴빈대떡";
+        jongList[4] = "낙지빈대떡";
+        jongList[5] = "해물파전";
+
+
+        list.add(new Store("봉구스밥버거","한식",bongList));
+        list.add(new Store("호접몽","중식",hoList));
+        list.add(new Store("종로빈대떡","한식",jongList));
     }
 }

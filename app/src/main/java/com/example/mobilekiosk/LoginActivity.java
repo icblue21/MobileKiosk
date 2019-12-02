@@ -70,10 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
                                     startActivity(intent);
                                 }
-                                else if(userID.equals("storemanage")){
-                                    Intent smintent = new Intent(LoginActivity.this, StoreManageActivity.class);
-                                    startActivity(smintent);
-                                }
                                 else {
                                     Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                     //Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
