@@ -76,12 +76,12 @@ public class MenuFragment1 extends Fragment {
 
 
         BList = new ButtonList[6];
-        BList[0] = new ButtonList(R.drawable.bb1, "햄버거1", 1000);
-        BList[1] = new ButtonList(R.drawable.bb2, "햄버거2", 2500);
-        BList[2] = new ButtonList(R.drawable.bb3, "햄버거3", 1500);
-        BList[3] = new ButtonList(R.drawable.bb4, "햄버거4", 4000);
-        BList[4] = new ButtonList(R.drawable.bb5, "햄버거5", 3500);
-        BList[5] = new ButtonList(R.drawable.bb6, "햄버거6", 500);
+        BList[0] = new ButtonList(R.drawable.bb1, "햄쏘야", 1000);
+        BList[1] = new ButtonList(R.drawable.bb2, "햄치즈쏘야", 2500);
+        BList[2] = new ButtonList(R.drawable.bb3, "에그김치제육", 1500);
+        BList[3] = new ButtonList(R.drawable.bb4, "치즈맛있새우", 4000);
+        BList[4] = new ButtonList(R.drawable.bb5, "에그치즈닭갈비", 3500);
+        BList[5] = new ButtonList(R.drawable.bb6, "마요오므라이스", 500);
 
 
         button[0].setOnClickListener(new View.OnClickListener() {
