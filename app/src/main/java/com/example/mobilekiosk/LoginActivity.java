@@ -70,9 +70,10 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
                                     startActivity(intent);
                                 }
-                                else if(userID.equals("storeA") || userID.equals("storeB") || userID.equals("storeC")) {
+                                 else if(userID.equals("storeA") || userID.equals("storeB") || userID.equals("storeC")) {
                                     Intent intent = new Intent(LoginActivity.this, StoreManageFunction.class);
-                                    intent.putExtra("userID", userID);
+                                    //intent.putExtra("userID", userID);
+                                    intent.putExtra("storeID", userID);
                                     startActivity(intent);
                                 }
                                 else {
