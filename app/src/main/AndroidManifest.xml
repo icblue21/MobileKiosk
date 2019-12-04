@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Manager_Function"></activity>
-        <activity android:name=".StoreManageActivity" />
+        <activity android:name=".StoreManageFunction" />
         <activity android:name=".AdminActivity" />
 
         <meta-data

@@ -59,9 +59,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         InitializeView();
         SetListener();
         GetDB_AllorderList();
-        GetDB_AllorderList2();
-        //GetFireDataTree();
-
+        GetFireDataTree();
 
 
     }
@@ -103,8 +101,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         testcount = 0;
         DBState = false;
         GetDB_AllorderList();
-        GetDB_AllorderList2();
-        //GetFireDataTree();
+        GetFireDataTree();
     }
 
     public void SetListener() {
@@ -132,7 +129,11 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
 
             case R.id.SearchButton:
                 //testdata = Ordertree.Treesearch("20191201004751");
+
+
                 ReDrawView(4);
+
+
                 break;
 
         }
@@ -158,6 +159,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                             tempArraydata_ALL.add(snapshot2.getKey());
                         }
 
+
                     }
                     for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
 
@@ -183,68 +185,6 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    void GetDB_AllorderList2() {
-
-        Database.addListenerForSingleValueEvent(new ValueEventListener() {
-            String storename = null;
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.child("StoreDB").getChildren()) {
-                    for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").getChildren()) {
-                        //OrderNumList.addLast(snapshot2.getKey());
-                        int j = 0;
-                        for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).getChildren()) {
-
-                            if (j==0) {
-                                String temps = "";
-                                temps += snapshot3.getValue();
-                                storename = temps;
-                                j++;
-
-                            } else {
-                                int i = 0;
-                                for (DataSnapshot snapshot5 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).child(snapshot3.getKey()).getChildren()) {
-                                    OrderList[i] = snapshot5.getValue(OrderData.class);
-                                    i++;
-                                }
-                                String DBroot = "StoreDB " + snapshot.getKey() + " Proceeding " + snapshot2.getKey();
-                                Ordertree.root = Ordertree.insert(Ordertree, snapshot2.getKey(), snapshot.getKey(), snapshot3.getKey(), OrderList, DBroot);
-                            }
-                        }
-
-                    }
-                    for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
-                        int j = 0;
-                        for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).getChildren()) {
-
-                            if (j==0) {
-                                String temps = "";
-                                temps += snapshot3.getValue();
-                                storename = temps;
-                                j++;
-
-                            } else {
-                                int i = 0;
-                                for (DataSnapshot snapshot5 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).child(snapshot3.getKey()).getChildren()) {
-                                    OrderList[i] = snapshot5.getValue(OrderData.class);
-                                    i++;
-                                }
-                                String DBroot = "StoreDB " + snapshot.getKey() + " end " + snapshot2.getKey();
-                                Ordertree.root = Ordertree.insert(Ordertree, snapshot2.getKey(), snapshot.getKey(), snapshot3.getKey(), OrderList, DBroot);
-                            }
-                        }
-                    }
-                }
-                DBState = true;
-                ReDrawView(0);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-
     void GetFireDataTree() {
         Database.addListenerForSingleValueEvent(new ValueEventListener() {
             String storename = null;
@@ -256,6 +196,8 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                         int j = 0;
                         for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).getChildren()) {
 
+
+
                             if (j==0) {
                                 String temps = "";
                                 temps += snapshot3.getValue();
@@ -273,31 +215,8 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                             }
                         }
                     }
-                    for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
-                        int j = 0;
-                        for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).getChildren()) {
-
-                            if (j==0) {
-                                String temps = "";
-                                temps += snapshot3.getValue();
-                                storename = temps;
-                                j++;
-
-                            } else {
-                                int i = 0;
-                                for (DataSnapshot snapshot5 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).child(snapshot3.getKey()).getChildren()) {
-                                    OrderList[i] = snapshot5.getValue(OrderData.class);
-                                    i++;
-                                }
-                                String DBroot = "StoreDB " + snapshot.getKey() + " end " + snapshot2.getKey();
-                                Ordertree.root = Ordertree.insert(Ordertree, snapshot2.getKey(), snapshot.getKey(), snapshot3.getKey(), OrderList, DBroot);
-                            }
-                        }
-                    }
                 }
-
             }
-
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

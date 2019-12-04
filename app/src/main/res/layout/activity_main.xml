@@ -8,19 +8,21 @@
 
     <ImageView
         android:id="@+id/map"
-        android:layout_width="412dp"
-        android:layout_height="662dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
         android:src="@drawable/map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_search"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/btn_bobburger"
@@ -36,10 +38,10 @@
 
     <ImageButton
         android:id="@+id/btn_hojupmong"
-        android:layout_width="71dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="191dp"
         android:layout_marginBottom="44dp"
         android:adjustViewBounds="true"
@@ -48,22 +50,20 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_bobburger"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/map"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.75"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
         android:id="@+id/btn_jongro"
-        android:layout_width="71dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
-        android:layout_marginBottom="124dp"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/jongro"
-        app:layout_constraintBottom_toTopOf="@+id/btn_bobburger"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.734"
-        app:layout_constraintStart_toEndOf="@+id/btn_hojupmong"
+        app:layout_constraintTop_toBottomOf="@+id/btn_search"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button

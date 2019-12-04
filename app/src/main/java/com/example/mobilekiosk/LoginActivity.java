@@ -63,19 +63,20 @@ public class LoginActivity extends AppCompatActivity {
                             if (success) {
                                 String userID = jsonObject.getString("userID");
                                 String userPass = jsonObject.getString("userPassword");
-
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+
                                 //여기 수정 OrderChoose로.
                                 if(userID.equals("admin")) {
                                     Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
                                     startActivity(intent);
                                 }
-                                else if(userID.equals("storemanage")){
-                                    Intent smintent = new Intent(LoginActivity.this, StoreManageActivity.class);
+                                else if(userID.equals("storeA") || userID.equals("storeB") || userID.equals("storeC") ){
+                                    Intent smintent = new Intent(LoginActivity.this, StoreManageFunction.class);
+                                    smintent.putExtra("storeID",userID);
                                     startActivity(smintent);
                                 }
                                 else {
-                                    Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
+                                    Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                     //Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                     intent.putExtra("userID", userID);
                                     startActivity(intent);
