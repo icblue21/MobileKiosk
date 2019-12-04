@@ -74,9 +74,9 @@ public class MenuFragment2 extends Fragment {
 
 
         BList = new ButtonList[6];
-        BList[0] = new ButtonList(R.drawable.set1, "세트1", 1000);
-        BList[1] = new ButtonList(R.drawable.set1, "세트2", 2500);
-        BList[2] = new ButtonList(R.drawable.set1, "세트3", 1200);
+        BList[0] = new ButtonList(R.drawable.set1, "햄쏘야 세트", 1000);
+        BList[1] = new ButtonList(R.drawable.set1, "햄치즈쏘야 세트", 2500);
+        BList[2] = new ButtonList(R.drawable.set1, "에그김치제육 세트", 1200);
 
 
 

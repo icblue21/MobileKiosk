@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -45,8 +44,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-
-
             }
         });
 
@@ -73,18 +70,14 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
                                     startActivity(intent);
                                 }
-
                                 else if(userID.equals("storemanage")){
-                                    Intent smintent = new Intent(LoginActivity.this, StoreManageFunction.class);
-                                    smintent.putExtra("storeID","storeA");
+                                    Intent smintent = new Intent(LoginActivity.this, StoreManageActivity.class);
                                     startActivity(smintent);
                                 }
                                 else {
-                                    //Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
-                                    Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, Manager_Function.class);
+                                    //Intent intent = new Intent(LoginActivity.this, OrderChooseActivity.class);
                                     intent.putExtra("userID", userID);
-
-
                                     startActivity(intent);
                                 }
                             } else {

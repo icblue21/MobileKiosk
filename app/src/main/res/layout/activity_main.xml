@@ -8,31 +8,19 @@
 
     <ImageView
         android:id="@+id/map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="412dp"
+        android:layout_height="662dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="32dp"
         android:src="@drawable/map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tv_choose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="음식점을 선택하세요."
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="@+id/map"
-        app:layout_constraintStart_toStartOf="@+id/map" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_search"
+        app:layout_constraintVertical_bias="0.058" />
 
     <ImageButton
         android:id="@+id/btn_bobburger"
@@ -50,31 +38,43 @@
         android:id="@+id/btn_hojupmong"
         android:layout_width="71dp"
         android:layout_height="55dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
         android:layout_marginTop="191dp"
         android:layout_marginBottom="44dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/hojupmong"
         app:layout_constraintBottom_toTopOf="@+id/btn_bobburger"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/map"
-        app:layout_constraintVertical_bias="0.75"
-        android:src="@drawable/hojupmong"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
         android:id="@+id/btn_jongro"
         android:layout_width="71dp"
         android:layout_height="55dp"
-        android:layout_marginTop="142dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginRight="92dp"
-        android:src="@drawable/jongro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_choose"
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="132dp"
+        android:layout_marginBottom="124dp"
         android:scaleType="fitCenter"
+        android:src="@drawable/jongro"
+        app:layout_constraintBottom_toTopOf="@+id/btn_bobburger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.734"
+        app:layout_constraintStart_toEndOf="@+id/btn_hojupmong"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="음식점 검색"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

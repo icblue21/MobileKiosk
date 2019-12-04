@@ -74,10 +74,10 @@ public class MenuFragment4 extends Fragment {
 
 
         BList = new ButtonList[6];
-        BList[0] = new ButtonList(R.drawable.bev2, "음료1", 1000);
-        BList[1] = new ButtonList(R.drawable.bev1, "음료2", 2500);
-        BList[2] = new ButtonList(R.drawable.bev2, "음료3", 1500);
-        BList[3] = new ButtonList(R.drawable.bev1, "음료4", 4000);
+        BList[0] = new ButtonList(R.drawable.bev2, "사이다250ml", 1000);
+        BList[1] = new ButtonList(R.drawable.bev1, "사이다500ml", 2500);
+        BList[2] = new ButtonList(R.drawable.bev2, "콜라250ml", 1500);
+        BList[3] = new ButtonList(R.drawable.bev1, "콜라500ml", 4000);
 
 
 

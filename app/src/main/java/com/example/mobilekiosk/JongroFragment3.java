@@ -142,31 +142,8 @@ public class JongroFragment3 extends Fragment {
     }
 
     void SubListenner(int num) {
-        switch (num) {
-            case 0:
-
-                ontime.ontimePickerset(BList[0].Fname, BList[0].price);
-                ((Order_Jongro)getActivity()).setResultView(BList[0].price);
-                break;
-
-            case 1:
-
-                ontime.ontimePickerset(BList[1].Fname, BList[1].price);
-                ((Order_Jongro)getActivity()).setResultView(BList[1].price);
-                break;
-
-            case 2:
-
-                ontime.ontimePickerset(BList[2].Fname, BList[2].price);
-                ((Order_Jongro)getActivity()).setResultView(BList[2].price);
-                break;
-
-            case 3:
-
-                ontime.ontimePickerset(BList[3].Fname, BList[3].price);
-                ((Order_Jongro)getActivity()).setResultView(BList[3].price);
-                break;
-        }
+        ontime.ontimePickerset(BList[num].Fname, BList[num].price);
+        ((Order_Jongro)getActivity()).setResultView(BList[num].price);
     }
 
     void ReDrawButton() {
