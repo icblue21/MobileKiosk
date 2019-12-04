@@ -2,6 +2,8 @@ package com.example.mobilekiosk;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Manager_Function extends AppCompatActivity implements View.OnClickListener {
@@ -56,7 +59,9 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         InitializeView();
         SetListener();
         GetDB_AllorderList();
-        GetFireDataTree();
+        GetDB_AllorderList2();
+        //GetFireDataTree();
+
 
 
     }
@@ -98,7 +103,8 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         testcount = 0;
         DBState = false;
         GetDB_AllorderList();
-        GetFireDataTree();
+        GetDB_AllorderList2();
+        //GetFireDataTree();
     }
 
     public void SetListener() {
@@ -115,7 +121,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                 } else if (SotoreList.getSelectedItem().equals("봉구스")) {
                     ReDrawView(1);
 
-                } else if (SotoreList.getSelectedItem().equals("홍주몽")) {
+                } else if (SotoreList.getSelectedItem().equals("호접몽")) {
                     ReDrawView(2);
 
                 } else {
@@ -126,11 +132,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
 
             case R.id.SearchButton:
                 //testdata = Ordertree.Treesearch("20191201004751");
-
-
                 ReDrawView(4);
-
-
                 break;
 
         }
@@ -155,7 +157,6 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                             tempArraydata_C.add(snapshot2.getKey());
                             tempArraydata_ALL.add(snapshot2.getKey());
                         }
-
 
                     }
                     for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
@@ -182,6 +183,68 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    void GetDB_AllorderList2() {
+
+        Database.addListenerForSingleValueEvent(new ValueEventListener() {
+            String storename = null;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.child("StoreDB").getChildren()) {
+                    for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").getChildren()) {
+                        //OrderNumList.addLast(snapshot2.getKey());
+                        int j = 0;
+                        for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).getChildren()) {
+
+                            if (j==0) {
+                                String temps = "";
+                                temps += snapshot3.getValue();
+                                storename = temps;
+                                j++;
+
+                            } else {
+                                int i = 0;
+                                for (DataSnapshot snapshot5 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).child(snapshot3.getKey()).getChildren()) {
+                                    OrderList[i] = snapshot5.getValue(OrderData.class);
+                                    i++;
+                                }
+                                String DBroot = "StoreDB " + snapshot.getKey() + " Proceeding " + snapshot2.getKey();
+                                Ordertree.root = Ordertree.insert(Ordertree, snapshot2.getKey(), snapshot.getKey(), snapshot3.getKey(), OrderList, DBroot);
+                            }
+                        }
+
+                    }
+                    for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
+                        int j = 0;
+                        for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).getChildren()) {
+
+                            if (j==0) {
+                                String temps = "";
+                                temps += snapshot3.getValue();
+                                storename = temps;
+                                j++;
+
+                            } else {
+                                int i = 0;
+                                for (DataSnapshot snapshot5 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).child(snapshot3.getKey()).getChildren()) {
+                                    OrderList[i] = snapshot5.getValue(OrderData.class);
+                                    i++;
+                                }
+                                String DBroot = "StoreDB " + snapshot.getKey() + " end " + snapshot2.getKey();
+                                Ordertree.root = Ordertree.insert(Ordertree, snapshot2.getKey(), snapshot.getKey(), snapshot3.getKey(), OrderList, DBroot);
+                            }
+                        }
+                    }
+                }
+                DBState = true;
+                ReDrawView(0);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
     void GetFireDataTree() {
         Database.addListenerForSingleValueEvent(new ValueEventListener() {
             String storename = null;
@@ -192,8 +255,6 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                     for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").getChildren()) {
                         int j = 0;
                         for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("Proceeding").child(snapshot2.getKey()).getChildren()) {
-
-
 
                             if (j==0) {
                                 String temps = "";
@@ -212,8 +273,31 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                             }
                         }
                     }
+                    for (DataSnapshot snapshot2 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").getChildren()) {
+                        int j = 0;
+                        for (DataSnapshot snapshot3 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).getChildren()) {
+
+                            if (j==0) {
+                                String temps = "";
+                                temps += snapshot3.getValue();
+                                storename = temps;
+                                j++;
+
+                            } else {
+                                int i = 0;
+                                for (DataSnapshot snapshot5 : dataSnapshot.child("StoreDB").child(snapshot.getKey()).child("end").child(snapshot2.getKey()).child(snapshot3.getKey()).getChildren()) {
+                                    OrderList[i] = snapshot5.getValue(OrderData.class);
+                                    i++;
+                                }
+                                String DBroot = "StoreDB " + snapshot.getKey() + " end " + snapshot2.getKey();
+                                Ordertree.root = Ordertree.insert(Ordertree, snapshot2.getKey(), snapshot.getKey(), snapshot3.getKey(), OrderList, DBroot);
+                            }
+                        }
+                    }
                 }
+
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -230,6 +314,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         //String str = "상품명: ";
         t1.setText(Num);
         t1.setTextSize(22);
+        t1.setTextColor(Color.BLACK);
         ll.addView(t1);
         OrderView.addView(ll);
 
@@ -243,6 +328,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         //String str = "상품명: ";
         temp.setText(tree.data);
         temp.setTextSize(22);
+        temp.setTextColor(Color.BLACK);
         final LinearLayout.LayoutParams ll2 = new LinearLayout.LayoutParams(120, 120);
         final Button btn = new Button(this);
         final Button btn2 = new Button(this);
@@ -271,7 +357,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
             public void onClick(View v) {
                 SetOreder = position;
                 SetOreder2 = Position2;
-               ShowPopUp();
+                ShowPopUp();
             }
 
         });
@@ -326,6 +412,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
         OrderView.removeAllViews();
         switch (set) {
             case 0:
+                Collections.sort(tempArraydata_ALL);
                 for (String i : tempArraydata_ALL) {
                     addView(i);
 
@@ -334,6 +421,7 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                 break;
 
             case 1:
+                Collections.sort((tempArraydata_A));
                 for (String i : tempArraydata_A) {
                     addView(i);
 
@@ -341,11 +429,13 @@ public class Manager_Function extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case 2:
+                Collections.sort(tempArraydata_B);
                 for (String i : tempArraydata_B) {
                     addView(i);
                 }
                 break;
             case 3:
+                Collections.sort(tempArraydata_C);
                 for (String i : tempArraydata_C) {
                     addView(i);
                 }

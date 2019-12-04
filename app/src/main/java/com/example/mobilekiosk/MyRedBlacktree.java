@@ -11,6 +11,10 @@ package com.example.mobilekiosk;
  **************************************************************************
  **/
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import static java.lang.Integer.max;
 
 import java.util.Iterator;
@@ -19,6 +23,7 @@ import java.util.Scanner;
 class MyRedBlacktree{
     public treenode root=null;// ROOT NODE OF THE TREE
     //To calculate height of the tree
+    @RequiresApi(api = Build.VERSION_CODES.N)
     int heightT(treenode root){
         int lefth,righth;
 
@@ -42,7 +47,6 @@ class MyRedBlacktree{
             if (temproot == null) {
                 return null;
             }
-
             int comp = Num.compareTo(temproot.data);
 
             if (comp==0) {

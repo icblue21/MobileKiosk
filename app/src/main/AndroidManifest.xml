@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Manager_Function"></activity>
+        <activity android:name=".StoreManageFunction"></activity>
+        <activity android:name=".Manager_Function" />
         <activity android:name=".StoreManageActivity" />
         <activity android:name=".AdminActivity" />
 
