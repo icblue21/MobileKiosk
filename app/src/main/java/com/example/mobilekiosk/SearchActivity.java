@@ -111,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
             // 리스트의 모든 데이터를 검색한다. 순차탐색
             for(int i = 0;i < arraylist.size(); i++)
             {
-                // 입력받은 단어가 가게이름이나 카테고리이름이면
+                // 입력받은 단어가 가게이름 or 카테고리 이름 or 메뉴 이름이면
                 if (arraylist.get(i).name.toLowerCase().contains(charText) || arraylist.get(i).category.toLowerCase().contains(charText)
                         || arraylist.get(i).menuList[0].toLowerCase().contains(charText)
                         || arraylist.get(i).menuList[1].toLowerCase().contains(charText)
@@ -131,9 +131,9 @@ public class SearchActivity extends AppCompatActivity {
 
     // 검색에 사용될 데이터를 리스트에 추가한다.
     private void settingList(){
-        String bongList[] = new String[6];
-        String hoList[] = new String[6];
-        String jongList[] = new String[6];
+        String bongList[] = new String[6]; // 봉구스 밥버거 메뉴
+        String hoList[] = new String[6]; // 호접몽 메뉴
+        String jongList[] = new String[6]; // 종빈 메뉴
 
         bongList[0] = "햄쏘야 밥버거";
         bongList[1] = "햄치즈쏘야 밥버거";
