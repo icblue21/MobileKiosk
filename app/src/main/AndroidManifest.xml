@@ -28,6 +28,7 @@
         <activity android:name=".PaymentChoice" />
         <activity android:name=".PayHistory" />
         <activity android:name=".Order_Menu" />
+        <activity android:name=".SearchActivity" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".Order_Hojupmong" />
         <activity android:name=".Order_Jongro" />

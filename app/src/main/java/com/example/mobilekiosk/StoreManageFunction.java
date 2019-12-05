@@ -236,6 +236,7 @@ public class StoreManageFunction extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 String[] root = SetOreder.split(" ");
+                Message+="ID: "+root[4]+'\n';
                 for (DataSnapshot snapshot : dataSnapshot.child(root[0]).child(root[1]).child(root[2]).child(root[3]).child(root[4]).getChildren()) {
                     OrderList = snapshot.getValue(OrderData.class);
                     temp = "상품명: " + OrderList.name + "   가격: " + OrderList.totalprice + "  주문수량: " + OrderList.quantity;
